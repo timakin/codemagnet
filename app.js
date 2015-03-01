@@ -57,8 +57,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-var debug = require('debug')('codemagnet');
-var app = require('../app');
+// var debug = require('debug')('codemagnet');
 
 app.set('port', process.env.PORT || 3000);
 
