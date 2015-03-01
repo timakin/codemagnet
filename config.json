@@ -7,12 +7,12 @@
 
   "compile":{
     "scripts": [],
-    "styles": []
+    "styles": "./client/**/*.less"
   },
 
   "dest":{
     "scripts":"",
-    "styles":""
+    "styles":"./client/public/"
   }
 
 }
