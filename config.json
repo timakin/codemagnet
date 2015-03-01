@@ -1,18 +1,21 @@
-"paths":{
+{
+  "paths": {
 
-  "watch":{
-    "scripts": [],
-    "styles": []
-  },
+    "watch": {
+      "scripts": [],
+      "styles": []
+    },
 
-  "compile":{
-    "scripts": [],
-    "styles": "./client/**/*.less"
-  },
+    "compile": {
+      "scripts": [],
+      "styles": "../client/**/*.less"
+    },
 
-  "dest":{
-    "scripts":"",
-    "styles":"./client/public/"
+    "dest": {
+      "scripts": "",
+      "styles": "./client/public/"
+    }
+
   }
 
 }
