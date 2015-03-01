@@ -1,9 +1,1 @@
-#footer {
-  font-size: 11px;
-}
-#header {
-  font-size: 11px;
-}
-#page1 {
-  font-size: 11px;
-}
+#footer,#header,#page1{font-size:11px}
