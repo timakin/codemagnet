@@ -1,5 +1,8 @@
 var gulp = require('gulp');
 
-gulp.task('default', function(){
-  console.log('default tasks');
-});
+
+var tasks = {
+  build: require('./tasks/build')
+};
+
+gulp.task('default', tasks.build);
