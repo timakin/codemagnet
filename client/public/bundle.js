@@ -12,7 +12,7 @@ var Container = require('./components/container/container.jsx');
 var Index = require('./views/index/index.jsx');
 
 var routes = (
-  React.createElement(Route, {name: "app", path: "/", handler: Container}, 
+  React.createElement(Route, {name: "codemagnet", path: "/", handler: Container}, 
     React.createElement(DefaultRoute, {handler: Index})
   )
 );
@@ -24,11 +24,21 @@ Router.run(routes, Router.HistoryLocation, function (Handler) {
 
 },{"./components/container/container.jsx":2,"./views/index/index.jsx":5,"react":193,"react-router":34}],2:[function(require,module,exports){
 var React = require('react');
+var Router = require('react-router');
+
+var Link = Router.Link,
+    Route = Router.Route,
+    State = Router.State,
+    Navigation = Router.Navigation,
+    NotFoundRoute = Router.NotFoundRoute,
+    DefaultRoute = Router.DefaultRoute,
+    RouteHandler = Router.RouteHandler;
 
 var Header = require('../header/header.jsx');
 var Footer = require('../footer/footer.jsx');
 
 module.exports  = React.createClass({displayName: "exports",
+  mixins: [Navigation, State],
   render: function(){
 
     return (
@@ -43,7 +53,7 @@ module.exports  = React.createClass({displayName: "exports",
 });
 
 
-},{"../footer/footer.jsx":3,"../header/header.jsx":4,"react":193}],3:[function(require,module,exports){
+},{"../footer/footer.jsx":3,"../header/header.jsx":4,"react":193,"react-router":34}],3:[function(require,module,exports){
 var React = require('react');
 
 module.exports  = React.createClass({displayName: "exports",

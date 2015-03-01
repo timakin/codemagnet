@@ -11,7 +11,7 @@ var Container = require('./components/container/container.jsx');
 var Index = require('./views/index/index.jsx');
 
 var routes = (
-  <Route name="app" path="/" handler={Container}>
+  <Route name="codemagnet" path="/" handler={Container}>
     <DefaultRoute handler={Index}/>
   </Route>
 );
