@@ -7,14 +7,11 @@
     },
 
     "resource": {
-      "scripts": [],
+      "scripts": "./client/index.jsx",
       "styles": "./client/**/*.less"
     },
 
-    "dest": {
-      "scripts": "",
-      "styles": "./client/public"
-    }
+    "publish":  "./client/public/"
 
   }
 

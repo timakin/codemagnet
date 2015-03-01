@@ -22,6 +22,7 @@ router.route('/test')
 router.route('/')
   .get(function(req,res,next){
     console.log("index: /");
+    res.render('index');
     next();
   });
 

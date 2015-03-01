@@ -7,14 +7,12 @@ var Route = Router.Route,
     Link = Router.Link,
     RouteHandler = Router.RouteHandler;
 
-var Container = require('./components/container.jsx');
-
-var Home = require('./views/home.jsx');
+var Container = require('./components/container/container.jsx');
+var Index = require('./views/index/index.jsx');
 
 var routes = (
   <Route name="app" path="/" handler={Container}>
-    <Route name="home" handler={Home} />
-    <DefaultRoute handler={Home}/>
+    <DefaultRoute handler={Index}/>
   </Route>
 );
 

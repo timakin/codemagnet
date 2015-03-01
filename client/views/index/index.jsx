@@ -1,11 +1,11 @@
 var React = require('react');
 
-module.exports  = React.createClass({
+module.exports = React.createClass({
   render: function(){
 
     return (
-      <div id="footer">
-        <h2>footer</h2>
+      <div>
+        <h2> hello, world</h2>
       </div>
     );
 
