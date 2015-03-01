@@ -6,6 +6,7 @@ var reactify = require('reactify');
 var sync = require('browser-sync');
 var plumber = require('gulp-plumber');
 var source = require('vinyl-source-stream');
+var minify = require('gulp-minify-css');
 var confPath = require('../config.json').paths;
 
 module.exports = {
@@ -37,6 +38,7 @@ module.exports = {
       }))
       .pipe(concat('style.less'))
       .pipe(less())
+      .pipe(minify())
       .pipe(gulp.dest(confPath.publish))
       .on('end',function(){
           sync.notify('ファイルを更新');
@@ -44,4 +46,4 @@ module.exports = {
       });
   }
 
-}
+};

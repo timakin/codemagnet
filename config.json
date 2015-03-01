@@ -11,7 +11,13 @@
       "styles": "./client/**/*.less"
     },
 
-    "publish":  "./client/public/"
+    "publish":  "./client/public/",
+
+    "dest": {
+      "scripts": "",
+      "styles": "./client/public",
+      "react": "./client/public"
+    }
 
   }
 

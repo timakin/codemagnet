@@ -26,6 +26,8 @@
     "react": "^0.12.2",
     "react-router": "^0.12.4",
     "reactify": "^1.0.0",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-source-stream": "^1.0.0",
+    "gulp-minify-css": "^0.5.1",
+    "less": "^2.4.0"
   }
 }
