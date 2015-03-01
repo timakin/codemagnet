@@ -8,12 +8,14 @@
 
     "resource": {
       "scripts": [],
-      "styles": "./client/**/*.less"
+      "styles": "./client/**/*.less",
+      "react": "./client/**/*.jsx"
     },
 
     "dest": {
       "scripts": "",
-      "styles": "./client/public"
+      "styles": "./client/public",
+      "react": "./client/public"
     }
 
   }
