@@ -1,0 +1,18 @@
+"paths":{
+
+  "watch":{
+    "scripts": [],
+    "styles": []
+  },
+
+  "compile":{
+    "scripts": [],
+    "styles": []
+  },
+
+  "dest":{
+    "scripts":"",
+    "styles":""
+  }
+
+}
