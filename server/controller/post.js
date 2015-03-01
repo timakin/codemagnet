@@ -1,13 +1,21 @@
-var express = require('express');
-var router = express.Router();
+module.exports = function(router){
 
-router.get('/post', function(req, res){
-  res.send('get user list');
-});
+  router.route('/post')
+    .get(function(req,res,next){
+      console.log("post: /post");
+      next();
+    });
 
-router.post('/post', function(req, res){
-  res.send('create new post', req.body.contents);
-});
+  router.route('/post/:name')
+    .get(function(req,res,next){
+      console.log("post: /post/:name", req.params);
+      next();
+    });
 
+  router.route('/post/*')
+    .get(function(req,res,next){
+      console.log("post: /post/*", req.params);
+      next();
+    });
 
-module.exports = router;
+}
