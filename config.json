@@ -19,6 +19,8 @@
       "react": "./client/public"
     }
 
-  }
+  },
+
+  "mongoUrl": "localhost:8000"
 
 }
