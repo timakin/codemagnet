@@ -1,0 +1,25 @@
+{
+  "name": "codemagnet",
+  "version": "0.0.1",
+  "homepage": "https://github.com/timakin/codemagnet",
+  "authors": [
+    "timakin <timaki.st@gmail.com>"
+  ],
+  "description": "codemagnet",
+  "main": "./server/app.js",
+  "keywords": [
+    "codemagnet"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./client/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2"
+  }
+}
