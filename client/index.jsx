@@ -9,10 +9,12 @@ var Route = Router.Route,
 
 var Container = require('./components/container/container.jsx');
 var Index = require('./views/index/index.jsx');
+var Post = require('./views/post/post.jsx');
 
 var routes = (
   <Route name="codemagnet" path="/" handler={Container}>
     <DefaultRoute handler={Index}/>
+    <Route name="post" handler={Post}/>
   </Route>
 );
 
