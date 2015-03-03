@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 
+var config = require('../config.json');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -40,7 +41,7 @@ var server = app.listen(app.get('port'), function() {
 });
 
 // ===== database setting
-app.set('seedDB', true);
+app.set('seedDB', config.db.seedOption);
 connectDB();
 insertSeedData();
 

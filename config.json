@@ -21,6 +21,8 @@
 
   },
 
-  "mongoUrl": "mongodb://localhost/codemagnet"
-
+  "db": {
+    "mongoUrl": "mongodb://localhost/codemagnet",
+    "seedOption": true
+  }
 }
