@@ -8,6 +8,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var connectDB = require('./config/database');
+var insertSeedData = require('./config/seed');
 
 // ===== view engine setup
 // uncomment after placing your favicon in /public
@@ -39,7 +40,9 @@ var server = app.listen(app.get('port'), function() {
 });
 
 // ===== database setting
+app.set('seedDB', true);
 connectDB();
+insertSeedData();
 
 
 module.exports = app;
