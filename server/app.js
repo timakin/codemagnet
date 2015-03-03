@@ -7,7 +7,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var mongoose = require('mongoose');
 
 // ===== view engine setup
 // uncomment after placing your favicon in /public
@@ -38,6 +38,9 @@ var server = app.listen(app.get('port'), function() {
   console.log('Express server listening on port ' + server.address().port);
 });
 
+// ===== database setting
+var config = require('../config.json');
+mongoose.connect(config.mongoUrl);
 
 
 

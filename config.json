@@ -21,6 +21,6 @@
 
   },
 
-  "mongoUrl": "localhost:8000"
+  "mongoUrl": "mongodb://localhost/codemagnet"
 
 }

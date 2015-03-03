@@ -1,3 +1,5 @@
+var Post = require('./post.model.js');
+
 module.exports = function(router){
 
   router.route('/post')
@@ -18,4 +20,11 @@ module.exports = function(router){
       next();
     });
 
-}
+  router.route('/post/all')
+    .get(function(req,res,next){
+      console.log("post: /post/all");
+      Post.find({}, function(err, posts){
+        res.send(posts);
+      });
+    });
+};
