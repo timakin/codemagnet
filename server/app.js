@@ -7,7 +7,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var connectDB = require('./database');
+var connectDB = require('./config/database');
 
 // ===== view engine setup
 // uncomment after placing your favicon in /public
