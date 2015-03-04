@@ -89,13 +89,24 @@ module.exports  = React.createClass({displayName: "exports",
 
 },{"react":194}],5:[function(require,module,exports){
 var React = require('react');
+var Router = require('react-router');
+
+var Route = Router.Route,
+    Navigation = Router.Navigation;
 
 module.exports = React.createClass({displayName: "exports",
+  mixins: [Navigation],
+
+  toPage: function(){
+    this.transitionTo('page');
+  },
+
   render: function(){
 
     return (
       React.createElement("div", null, 
-        React.createElement("h2", null, " hello, world")
+        React.createElement("h2", null, " hello, world!"), 
+        React.createElement("div", {onClick: this.toPage}, "to page")
       )
     );
 
@@ -103,23 +114,30 @@ module.exports = React.createClass({displayName: "exports",
 });
 
 
-},{"react":194}],6:[function(require,module,exports){
+},{"react":194,"react-router":35}],6:[function(require,module,exports){
 var React = require('react');
+var Router = require('react-router');
+
+var Link = Router.Link,
+    State = Router.State,
+    Navigation = Router.Navigation,
+    RouteHandler = Router.RouteHandler,
+    DefaultRoute = Router.DefaultRoute;
 
 module.exports = React.createClass({displayName: "exports",
     render: function(){
 
-        return (
-        React.createElement("div", null, 
-        React.createElement("h2", null, " Post Page")
-        )
-        );
-        
+      return (
+      React.createElement("div", null, 
+      React.createElement("h2", null, " Post Page")
+      )
+      );
+
     }
 });
 
 
-},{"react":194}],7:[function(require,module,exports){
+},{"react":194,"react-router":35}],7:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
