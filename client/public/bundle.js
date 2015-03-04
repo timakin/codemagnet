@@ -73,13 +73,33 @@ module.exports  = React.createClass({displayName: "exports",
 
 },{"react":194}],4:[function(require,module,exports){
 var React = require('react');
+var Router = require('react-router');
+
+var Route = Router.Route,
+    NotFoundRoute = Router.NotFoundRoute,
+    DefaultRoute = Router.DefaultRoute,
+    Link = Router.Link,
+    Navigation = Router.Navigation,
+    RouteHandler = Router.RouteHandler;
 
 module.exports  = React.createClass({displayName: "exports",
-  render: function(){
+  mixins: [Navigation],
 
+    toIndex: function(){
+      this.transitionTo('/');
+    },
+
+    toPost: function(){
+      this.transitionTo('post');
+    },
+
+  render: function(){
     return (
       React.createElement("div", {id: "header"}, 
-        React.createElement("h1", null, "header")
+        React.createElement("h1", null, "header"), 
+        React.createElement("div", {onClick: this.toIndex}, "GoToIndex"), 
+        React.createElement("div", {onClick: this.toPost}, "GoToPost"), 
+        React.createElement("p", null, "-----------------------------------")
       )
     );
 
@@ -87,7 +107,7 @@ module.exports  = React.createClass({displayName: "exports",
 });
 
 
-},{"react":194}],5:[function(require,module,exports){
+},{"react":194,"react-router":35}],5:[function(require,module,exports){
 var React = require('react');
 var Router = require('react-router');
 
@@ -127,12 +147,11 @@ var Link = Router.Link,
 module.exports = React.createClass({displayName: "exports",
     mixins: [Navigation],
 
-    toIndex: function(){
-      this.transitionTo('/');
+    toIndex: function() {
+        this.transitionTo('/');
     },
 
     render: function(){
-
       return (
       React.createElement("div", null, 
       React.createElement("div", {onClick: this.toIndex}, "Back to Index"), 

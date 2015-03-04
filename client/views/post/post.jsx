@@ -10,12 +10,11 @@ var Link = Router.Link,
 module.exports = React.createClass({
     mixins: [Navigation],
 
-    toIndex: function(){
-      this.transitionTo('/');
+    toIndex: function() {
+        this.transitionTo('/');
     },
 
     render: function(){
-
       return (
       <div>
       <div onClick={this.toIndex}>Back to Index</div>
