@@ -97,8 +97,8 @@ var Route = Router.Route,
 module.exports = React.createClass({displayName: "exports",
   mixins: [Navigation],
 
-  toPage: function(){
-    this.transitionTo('page');
+  toPost: function(){
+    this.transitionTo('post');
   },
 
   render: function(){
@@ -106,7 +106,7 @@ module.exports = React.createClass({displayName: "exports",
     return (
       React.createElement("div", null, 
         React.createElement("h2", null, " hello, world!"), 
-        React.createElement("div", {onClick: this.toPage}, "to page")
+        React.createElement("div", {onClick: this.toPost}, "to page")
       )
     );
 
