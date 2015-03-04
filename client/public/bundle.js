@@ -125,10 +125,17 @@ var Link = Router.Link,
     DefaultRoute = Router.DefaultRoute;
 
 module.exports = React.createClass({displayName: "exports",
+    mixins: [Navigation],
+
+    toIndex: function(){
+      this.transitionTo('/');
+    },
+
     render: function(){
 
       return (
       React.createElement("div", null, 
+      React.createElement("div", {onClick: this.toIndex}, "Back to Index"), 
       React.createElement("h2", null, " Post Page")
       )
       );
