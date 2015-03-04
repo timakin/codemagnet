@@ -97,8 +97,8 @@ module.exports  = React.createClass({displayName: "exports",
     return (
       React.createElement("div", {id: "header"}, 
         React.createElement("h1", null, "header"), 
-        React.createElement("div", {onClick: this.toIndex}, "GoToIndex"), 
-        React.createElement("div", {onClick: this.toPost}, "GoToPost"), 
+        React.createElement("div", {onClick: this.toIndex}, "Index"), 
+        React.createElement("div", {onClick: this.toPost}, "Post"), 
         React.createElement("p", null, "-----------------------------------")
       )
     );

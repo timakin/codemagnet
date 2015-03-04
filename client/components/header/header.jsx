@@ -23,8 +23,8 @@ module.exports  = React.createClass({
     return (
       <div id="header">
         <h1>header</h1>
-        <div onClick={this.toIndex}>GoToIndex</div>
-        <div onClick={this.toPost}>GoToPost</div>
+        <div onClick={this.toIndex}>Index</div>
+        <div onClick={this.toPost}>Post</div>
         <p>-----------------------------------</p>
       </div>
     );
