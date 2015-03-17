@@ -1,4 +1,5 @@
 var Post = require('./post.model.js');
+var React = require('react');
 
 module.exports = function(router){
 

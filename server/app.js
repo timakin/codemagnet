@@ -10,6 +10,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var connectDB = require('./config/database');
 var insertSeedData = require('./config/seed');
+var fs = require('fs');
+var Handlebars = require('handlebars');
+require('node-jsx').install({ harmony: true });
+var template = Handlebars.compile(fs.readFileSync('./client/public/index.hbs').toString());
 
 // ===== view engine setup
 // uncomment after placing your favicon in /public
