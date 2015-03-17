@@ -15,7 +15,8 @@ module.exports = {
     console.log("start-task: jsx");
     browserify({
         entries: [confPath.resource.scripts],
-        transform: [reactify]
+        transform: [reactify],
+        harmony: true
     })
     .bundle()
     .pipe(plumber(function(res){

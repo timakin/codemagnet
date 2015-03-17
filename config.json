@@ -7,7 +7,7 @@
     },
 
     "resource": {
-      "scripts": "./client/index.jsx",
+      "scripts": "./client/browser.js",
       "styles": "./client/**/*.less"
     },
 
