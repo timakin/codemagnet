@@ -21,11 +21,7 @@ var template = Handlebars.compile(fs.readFileSync('./client/public/index.hbs').t
 var routes = require('../client/routes')();
 app.get('/bundle.js', function(req, res) {
   res.setHeader('content-type', 'application/javascript');
-  browserify('./client/browser')
-    .transform({ harmony: true }, reactify)
-    .bundle()
-    .pipe(res)
-  ;
+  res.send('./client/public/bundle');
 });
 
 
