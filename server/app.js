@@ -16,6 +16,10 @@ var Router = require('react-router');
 var browserify = require('browserify');
 var reactify = require('reactify');
 
+// ===== server api routing
+app.use(router);
+app.use('/', require('./controller/index'));
+
 require('node-jsx').install({ harmony: true });
 var template = Handlebars.compile(fs.readFileSync('./client/public/index.hbs').toString());
 var routes = require('../client/routes')();
@@ -47,12 +51,6 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../client/public'));
 app.use(express.static(path.join(__dirname, '../client/public')));
-
-
-
-// ===== server api routing
-app.use(router);
-app.use('/', require('./controller'));
 
 
 
