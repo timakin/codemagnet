@@ -18,7 +18,7 @@ var reactify = require('reactify');
 
 // ===== server api routing
 app.use(router);
-app.use('/', require('./controller/index'));
+app.use('/', require('./controller'));
 
 require('node-jsx').install({ harmony: true });
 var template = Handlebars.compile(fs.readFileSync('./client/public/index.hbs').toString());
