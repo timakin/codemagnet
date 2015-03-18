@@ -2,7 +2,8 @@
 var React = require('react'),
     Router = require('react-router'),
     RouteHandler = Router.RouteHandler,
-    Header = require('./header/header.jsx')
+    Header = require('./header/header.jsx'),
+    Footer = require('./footer/footer.jsx')
 ;
 
 var App = React.createClass({
@@ -12,6 +13,7 @@ var App = React.createClass({
         <Header />
         <h1>CodeMagnet</h1>
         <RouteHandler />
+        <Footer />
       </div>
     );
   }
