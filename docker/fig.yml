@@ -6,7 +6,7 @@ mongodb:
 codemagnet:
   build: .
   ports:
-    - "80:4000"
+    - "4000:4000"
   links:
     - mongodb
   volumes:

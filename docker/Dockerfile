@@ -23,7 +23,7 @@ RUN       rm -r node-v0.10.26
 
 RUN npm install -g grunt-cli gulp webpack bower
 
-EXPOSE 80
+EXPOSE 4000
 
 # CLEAN UP CONFIGURATION
 RUN       apt-get remove -y build-essential python wget
