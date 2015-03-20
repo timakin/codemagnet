@@ -23,16 +23,9 @@ RUN       rm -r node-v0.10.26
 
 RUN npm install -g grunt-cli gulp webpack bower
 
-CMD ["bash"]
-
-## Run nodeapp
-## Bundle app source
-CMD mkdir src
-ADD     . /src
-RUN chmod 777 /src/setup.sh
-RUN ./src/setup.sh 
-
-EXPOSE 3000
+EXPOSE 80
 
 # CLEAN UP CONFIGURATION
 RUN       apt-get remove -y build-essential python wget
+
+CMD ["bash"]

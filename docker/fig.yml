@@ -1,8 +1,13 @@
-web:
+mongodb:
+  image: mongo
+  ports:
+    - "27017:27017"
+
+codemagnet:
   build: .
   ports:
-  - "3000:3000"
+    - "80:4000"
   links:
-  - mongo
-mongo:
-   image: dockerfile/mongodb
+    - mongodb
+  volumes:
+    - ../../codemagnet:codemagnet
