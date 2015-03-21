@@ -10,6 +10,7 @@ module.exports  = React.createClass({
     return (
       <div id="header">
         <h1>header</h1>
+        <Link to="/">Go Home</Link> | <Link to="/post">Go Post</Link>
       </div>
     );
 
