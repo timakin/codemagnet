@@ -8,5 +8,5 @@ var tasks = {
 gulp.task('jsx', tasks.compile.jsx);
 gulp.task('less', tasks.compile.less);
 gulp.task('serve', tasks.server.serve);
-
+gulp.task('vmserve', tasks.server.vmserve);
 gulp.task('default', ['less', 'jsx', 'serve']);
