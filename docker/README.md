@@ -9,6 +9,11 @@ virtual box
 boot2docker
 fig
 ```
+
+```
+cd /codemagnet/docker
+chmod 777 *.sh
+```
 ## Port Forwarding
 
 ```
