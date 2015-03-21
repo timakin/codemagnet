@@ -1,1 +1,2 @@
-boot2docker stop
+fig stop
+boot2docker down

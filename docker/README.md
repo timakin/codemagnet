@@ -20,7 +20,7 @@ VBoxManage modifyvm "boot2docker-vm" --natpf1 "tcp-port4000,tcp,,4000,,4000";
 ## Manage Application
 
 ```
-fig up -d
+sh start.sh
 // fig logs codemagnet
-fig stop
+sh stop.sh
 ```
