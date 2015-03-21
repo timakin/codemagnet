@@ -1,5 +1,5 @@
-mongodb:
-  image: mongo
+mongo:
+  image: mongo:2.4.10
   ports:
     - "27017:27017"
 
@@ -8,6 +8,6 @@ codemagnet:
   ports:
     - "4000:4000"
   links:
-    - mongodb
+    - mongo:mongo
   volumes:
-    - ../../codemagnet:codemagnet
+    - ..:/codemagnet

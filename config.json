@@ -22,7 +22,7 @@
   },
 
   "db": {
-    "mongoUrl": "mongodb://127.0.0.1:27017/codemagnet",
+    "mongoUrl": "mongodb://192.168.59.103:27017/codemagnet",
     "seedOption": true
   }
 }
