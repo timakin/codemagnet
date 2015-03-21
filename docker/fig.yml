@@ -1,0 +1,13 @@
+mongo:
+  image: mongo:2.4.10
+  ports:
+    - "27017:27017"
+
+codemagnet:
+  build: .
+  ports:
+    - "4000:4000"
+  links:
+    - mongo:mongo
+  volumes:
+    - ..:/codemagnet

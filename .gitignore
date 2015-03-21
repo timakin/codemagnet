@@ -4,3 +4,4 @@ npm-debug.log
 .idea/
 .tmp/
 client/bower_components/
+.nodeman*
