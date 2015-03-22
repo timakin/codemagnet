@@ -1,5 +1,8 @@
+'use strict';
+
 var React = require('react');
 var Router = require('react-router');
+var superagent = require('superagent');
 
 var Route = Router.Route,
     Link = Router.Link,
