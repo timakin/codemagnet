@@ -105,25 +105,43 @@ var superagent = require('superagent');
 var Link = Router.Link,
     Route = Router.Route;
 
+var HOST = 'localhost';//process.env.HOST;
+var PORT = '4000';//process.env.PORT;
+var BASE_URL = `http://${HOST}:${PORT}`;
+
 module.exports = React.createClass({displayName: "exports",
   getDefaultProps: function(){
     return {
       title: "PostList",
-      source: "/post/all"
+      source: '/post/all'
     };
   },
 
   componentWillMount: function() {
-    console.log("Yo");
-      this.setState({posts: "yo"}, function(){
-        console.log("yeah");
-      });
+    this.setState({yo: "yotest"});
+    superagent.get(BASE_URL + this.props.source).accept('json').end(function(err, res) {
+    if (typeof window.__PROPS__ != 'undefined') {
+
+      if (err) throw err;
+      console.log(res.body);
+      this.setState({posts: res.body});
+      console.log("~~~~~~~~~~~");
+      console.log(this.state);
+      console.log("~~~~~~~~~~~");
+    }
+
+    }.bind(this));
+
   },
 
   render: function(){
+    console.log('==========');
+    console.log(this.state);
+    console.log('==========');
     return (
       React.createElement("div", {id: "post"}, 
         React.createElement("h1", null, this.props.title), 
+        React.createElement("p", null, this.state.yo), 
         React.createElement("p", null, this.state.posts)
       )
     );
