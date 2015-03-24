@@ -18,12 +18,16 @@ module.exports = React.createClass({
     };
   },
 
+  cbSetState: function(err, res) {
+    console.log(res.body);
+    this.setState({
+      posts: res.body
+    });
+  },
+
   componentWillMount: function() {
     this.setState({yo: "yotest"});
-    superagent.get(BASE_URL + this.props.source).accept('json').end(function(err, res) {
-      if (err) throw err;
-      this.setState({posts: res.body});
-    }.bind(this));
+    superagent.get(BASE_URL + this.props.source).accept('json').end(this.cbSetState);
   },
 
   render: function(){

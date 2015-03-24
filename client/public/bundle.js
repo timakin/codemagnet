@@ -117,21 +117,16 @@ module.exports = React.createClass({displayName: "exports",
     };
   },
 
+  cbSetState: function(err, res) {
+    console.log(res.body);
+    this.setState({
+      posts: res.body
+    });
+  },
+
   componentWillMount: function() {
     this.setState({yo: "yotest"});
-    superagent.get(BASE_URL + this.props.source).accept('json').end(function(err, res) {
-    if (typeof window.__PROPS__ != 'undefined') {
-
-      if (err) throw err;
-      console.log(res.body);
-      this.setState({posts: res.body});
-      console.log("~~~~~~~~~~~");
-      console.log(this.state);
-      console.log("~~~~~~~~~~~");
-    }
-
-    }.bind(this));
-
+    superagent.get(BASE_URL + this.props.source).accept('json').end(this.cbSetState);
   },
 
   render: function(){
