@@ -12,7 +12,7 @@ var App = React.createClass({
       <div>
         <Header />
         <h1>CodeMagnet</h1>
-        <RouteHandler />
+        <RouteHandler {...this.props} />
         <Footer />
       </div>
     );

@@ -4,10 +4,11 @@ var React = require('react'),
     routes = require('./routes')()
 ;
 
-Router.run(routes, Router.HistoryLocation, (Handler) => {
-  React.render(React.createElement(Handler, null), document.getElementById("app"));
-});
+var initialData = JSON.parse(document.getElementById('initial-data').getAttribute('data-json'));
 
+Router.run(routes, Router.HistoryLocation, (Handler) => {
+  React.render(React.createElement(Handler, {params: {datas: initialData}}), document.getElementById("app"));
+});
 
 
 },{"./routes":7,"react":195,"react-router":36}],2:[function(require,module,exports){
@@ -25,7 +26,7 @@ var App = React.createClass({displayName: "App",
       React.createElement("div", null, 
         React.createElement(Header, null), 
         React.createElement("h1", null, "CodeMagnet"), 
-        React.createElement(RouteHandler, null), 
+        React.createElement(RouteHandler, React.__spread({},  this.props)), 
         React.createElement(Footer, null)
       )
     );
@@ -110,34 +111,28 @@ var PORT = '4000';//process.env.PORT;
 var BASE_URL = `http://${HOST}:${PORT}`;
 
 module.exports = React.createClass({displayName: "exports",
-  getDefaultProps: function(){
+  getDefaultProps: function() {
     return {
-      title: "PostList",
-      source: '/post/all'
+      params: {
+        datas: {
+          data: []
+        }
+      }
     };
-  },
-
-  cbSetState: function(err, res) {
-    console.log(res.body);
-    this.setState({
-      posts: res.body
-    });
   },
 
   componentWillMount: function() {
     this.setState({yo: "yotest"});
-    superagent.get(BASE_URL + this.props.source).accept('json').end(this.cbSetState);
   },
 
   render: function(){
     console.log('==========');
-    console.log(this.state);
+    console.log(this.props.params.datas);
     console.log('==========');
     return (
       React.createElement("div", {id: "post"}, 
-        React.createElement("h1", null, this.props.title), 
-        React.createElement("p", null, this.state.yo), 
-        React.createElement("p", null, this.state.posts)
+        React.createElement("h1", null, this.props.params.datas), 
+        React.createElement("p", null, this.state.yo)
       )
     );
   }

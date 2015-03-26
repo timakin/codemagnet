@@ -11,10 +11,13 @@ var PORT = '4000';//process.env.PORT;
 var BASE_URL = `http://${HOST}:${PORT}`;
 
 module.exports = React.createClass({
-  getDefaultProps: function(){
+  getDefaultProps: function() {
     return {
-      title: "PostList",
-      source: '/post/all'
+      params: {
+        datas: {
+          data: []
+        }
+      }
     };
   },
 
@@ -24,11 +27,11 @@ module.exports = React.createClass({
 
   render: function(){
     console.log('==========');
-    console.log(this.props);
+    console.log(this.props.params.datas);
     console.log('==========');
     return (
       <div id="post">
-        <h1>{this.props.title}</h1>
+        <h1>{this.props.params.datas}</h1>
         <p>{this.state.yo}</p>
       </div>
     );

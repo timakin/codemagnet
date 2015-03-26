@@ -28,11 +28,17 @@ app.get('/bundle.js', function(req, res) {
   res.send('./client/public/bundle');
 });
 
+var data = [
+  { id: 1, name: 'backbone' },
+  { id: 2, name: 'react' },
+  { id: 3, name: 'angular' },
+];
 
 app.use(function(req, res) {
   Router.run(routes, req.path, function(Handler) {
     res.send(template({
-      markup: React.renderToString(React.createElement(Handler))
+      initialData: JSON.stringify(data),
+      markup: React.renderToString(React.createElement(Handler, {params: {datas: data}}))
     }));
   });
 });

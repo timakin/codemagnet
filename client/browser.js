@@ -3,7 +3,8 @@ var React = require('react'),
     routes = require('./routes')()
 ;
 
-Router.run(routes, Router.HistoryLocation, (Handler) => {
-  React.render(<Handler />, document.getElementById("app"));
-});
+var initialData = JSON.parse(document.getElementById('initial-data').getAttribute('data-json'));
 
+Router.run(routes, Router.HistoryLocation, (Handler) => {
+  React.render(<Handler params={{datas: initialData}} />, document.getElementById("app"));
+});
