@@ -6,7 +6,7 @@ var React = require('react'),
 
 var initialData = JSON.parse(document.getElementById('initial-data').getAttribute('data-json'));
 
-Router.run(routes, Router.HistoryLocation, (Handler) => {
+Router.run(routes, Router.HistoryLocation, function(Handler)  {
   React.render(React.createElement(Handler, {params: {datas: initialData}}), document.getElementById("app"));
 });
 
@@ -21,7 +21,7 @@ var React = require('react'),
 ;
 
 var App = React.createClass({displayName: "App",
-  render() {
+  render:function() {
     return (
       React.createElement("div", null, 
         React.createElement(Header, null), 
@@ -108,31 +108,31 @@ var Link = Router.Link,
 
 var HOST = 'localhost';//process.env.HOST;
 var PORT = '4000';//process.env.PORT;
-var BASE_URL = `http://${HOST}:${PORT}`;
+var BASE_URL = ("http://" + HOST + ":" + PORT);
 
 module.exports = React.createClass({displayName: "exports",
-  getDefaultProps: function() {
+  getInitialState: function(){
     return {
-      params: {
-        datas: {
-          data: []
-        }
-      }
-    };
+      yo: null
+    }
   },
 
-  componentWillMount: function() {
-    this.setState({yo: "yotest"});
+  componentDidMount: function() {
+    superagent.get('/post/all').end(function(err, res)  {
+      this.setState({posts: JSON.stringify(res.body), typeofpost: typeof res.body});
+    }.bind(this));
   },
 
   render: function(){
     console.log('==========');
     console.log(this.props.params.datas);
+    console.log(this.state);
     console.log('==========');
     return (
       React.createElement("div", {id: "post"}, 
         React.createElement("h1", null, this.props.params.datas), 
-        React.createElement("p", null, this.state.yo)
+        React.createElement("p", null, this.state.posts), 
+        React.createElement("p", null, this.state.typeofpost)
       )
     );
   }

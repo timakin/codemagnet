@@ -11,28 +11,28 @@ var PORT = '4000';//process.env.PORT;
 var BASE_URL = `http://${HOST}:${PORT}`;
 
 module.exports = React.createClass({
-  getDefaultProps: function() {
+  getInitialState: function(){
     return {
-      params: {
-        datas: {
-          data: []
-        }
-      }
-    };
+      yo: null
+    }
   },
 
-  componentWillMount: function() {
-    this.setState({yo: "yotest"});
+  componentDidMount: function() {
+    superagent.get('/post/all').end((err, res) => {
+      this.setState({posts: JSON.stringify(res.body), typeofpost: typeof res.body});
+    });
   },
 
   render: function(){
     console.log('==========');
     console.log(this.props.params.datas);
+    console.log(this.state);
     console.log('==========');
     return (
       <div id="post">
         <h1>{this.props.params.datas}</h1>
-        <p>{this.state.yo}</p>
+        <p>{this.state.posts}</p>
+        <p>{this.state.typeofpost}</p>
       </div>
     );
   }

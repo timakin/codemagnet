@@ -15,17 +15,17 @@ var React = require('react');
 var Router = require('react-router');
 var browserify = require('browserify');
 var reactify = require('reactify');
+require('node-jsx').install({ harmony: true });
 
 // ===== server api routing
 app.use(router);
 app.use('/', require('./controller'));
 
-require('node-jsx').install({ harmony: true });
 var template = Handlebars.compile(fs.readFileSync('./client/public/index.hbs').toString());
 var routes = require('../client/routes')();
 app.get('/bundle.js', function(req, res) {
   res.setHeader('content-type', 'application/javascript');
-  res.send('./client/public/bundle');
+  fs.createReadStream('./client/public/bundle.js').pipe(res);
 });
 
 var data = [
