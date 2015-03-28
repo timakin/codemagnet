@@ -9,6 +9,10 @@ module.exports = function(){
             code: "test/code/dir/test.js",
             description: "this is awesome code :)",
             section: "{'docText': 'codeText'}"
+        }, {
+            code: "test/code/dir/test2.js",
+            description: "this is :)",
+            section: "{'docText': 'codeText'}"
         }, function () {
             console.log("Post seeds are created.");
         });

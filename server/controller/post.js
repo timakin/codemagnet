@@ -25,6 +25,7 @@ module.exports = function(router){
     .get(function(req,res,next){
       console.log("post: /post/all");
       Post.find({}, function(err, posts){
+        console.log(posts);
         res.send(posts);
       });
     });
