@@ -17,6 +17,7 @@
     "superagent": "^1.1.0"
   },
   "devDependencies": {
+    "babelify": "^6.0.2",
     "browser-sync": "^2.2.1",
     "browserify": "^9.0.3",
     "gulp": "^3.8.11",

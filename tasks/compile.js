@@ -3,6 +3,7 @@ var concat = require('gulp-concat');
 var less = require('gulp-less');
 var browserify = require('browserify');
 var reactify = require('reactify');
+var babelify = require('babelify');
 var sync = require('browser-sync');
 var plumber = require('gulp-plumber');
 var source = require('vinyl-source-stream');
@@ -15,7 +16,7 @@ module.exports = {
     console.log("start-task: jsx");
     browserify({
         entries: [confPath.resource.scripts],
-        transform: [[reactify,{harmony:true}]]
+        transform: [reactify, bebelify]
     })
     .bundle()
     .pipe(plumber(function(res){
