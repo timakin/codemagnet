@@ -1,15 +1,15 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+'use strict';
+
 var React = require('react'),
     Router = require('react-router'),
-    routes = require('./routes')()
-;
+    routes = require('./routes')();
 
 var initialData = JSON.parse(document.getElementById('initial-data').getAttribute('data-json'));
 
-Router.run(routes, Router.HistoryLocation, function(Handler)  {
-  React.render(React.createElement(Handler, {params: {datas: initialData}}), document.getElementById("app"));
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+    React.render(React.createElement(Handler, { params: { datas: initialData } }), document.getElementById('app'));
 });
-
 
 },{"./routes":7,"react":195,"react-router":36}],2:[function(require,module,exports){
 'use strict';
@@ -17,40 +17,27 @@ var React = require('react'),
     Router = require('react-router'),
     RouteHandler = Router.RouteHandler,
     Header = require('./header/header.jsx'),
-    Footer = require('./footer/footer.jsx')
-;
+    Footer = require('./footer/footer.jsx');
 
-var App = React.createClass({displayName: "App",
-  render:function() {
-    return (
-      React.createElement("div", null, 
-        React.createElement(Header, null), 
-        React.createElement("h1", null, "CodeMagnet"), 
-        React.createElement(RouteHandler, React.__spread({},  this.props)), 
-        React.createElement(Footer, null)
-      )
-    );
+var App = React.createClass({ displayName: 'App',
+  render: function render() {
+    return React.createElement('div', null, React.createElement(Header, null), React.createElement('h1', null, 'CodeMagnet'), React.createElement(RouteHandler, React.__spread({}, this.props)), React.createElement(Footer, null));
   }
 });
 
 module.exports = App;
 
-
 },{"./footer/footer.jsx":3,"./header/header.jsx":4,"react":195,"react-router":36}],3:[function(require,module,exports){
-var React = require('react');
+"use strict";
 
-module.exports  = React.createClass({displayName: "exports",
-  render: function(){
+var React = require("react");
 
-    return (
-      React.createElement("div", {id: "footer"}, 
-        React.createElement("h2", null, "footer")
-      )
-    );
+module.exports = React.createClass({ displayName: "exports",
+  render: function render() {
 
+    return React.createElement("div", { id: "footer" }, React.createElement("h2", null, "footer"));
   }
 });
-
 
 },{"react":195}],4:[function(require,module,exports){
 'use strict';
@@ -63,39 +50,27 @@ var Route = Router.Route,
     Link = Router.Link,
     RouteHandler = Router.RouteHandler;
 
-module.exports  = React.createClass({displayName: "exports",
-  render: function(){
-    return (
-      React.createElement("div", {id: "header"}, 
-        React.createElement("h1", null, "header"), 
-        React.createElement(Link, {to: "/"}, "Go Home"), " | ", React.createElement(Link, {to: "/post"}, "Go Post")
-      )
-    );
-
+module.exports = React.createClass({ displayName: 'exports',
+  render: function render() {
+    return React.createElement('div', { id: 'header' }, React.createElement('h1', null, 'header'), React.createElement(Link, { to: '/' }, 'Go Home'), ' | ', React.createElement(Link, { to: '/post' }, 'Go Post'));
   }
 });
 
-
 },{"react":195,"react-router":36,"superagent":196}],5:[function(require,module,exports){
+'use strict';
+
 var React = require('react');
 var Router = require('react-router');
 
 var Link = Router.Link,
     Route = Router.Route;
 
-module.exports  = React.createClass({displayName: "exports",
-    render: function(){
+module.exports = React.createClass({ displayName: 'exports',
+    render: function render() {
 
-        return (
-          React.createElement("div", {id: "home"}, 
-            React.createElement("h1", null, "this is home"), 
-            React.createElement("h1", null, "Go to ", React.createElement(Link, {to: "/post"}, "Post"))
-          )
-        );
-
+        return React.createElement('div', { id: 'home' }, React.createElement('h1', null, 'this is home'), React.createElement('h1', null, 'Go to ', React.createElement(Link, { to: '/post' }, 'Post')));
     }
 });
-
 
 },{"react":195,"react-router":36}],6:[function(require,module,exports){
 'use strict';
@@ -106,57 +81,48 @@ var superagent = require('superagent');
 var Link = Router.Link,
     Route = Router.Route;
 
-var HOST = 'localhost';//process.env.HOST;
-var PORT = '4000';//process.env.PORT;
-var BASE_URL = ("http://" + HOST + ":" + PORT);
+var HOST = 'localhost'; //process.env.HOST;
+var PORT = '4000'; //process.env.PORT;
+var BASE_URL = 'http://' + HOST + ':' + PORT;
 
-module.exports = React.createClass({displayName: "exports",
-  getInitialState:function() {
+module.exports = React.createClass({ displayName: 'exports',
+  getInitialState: function getInitialState() {
     return {
       yo: null
-    }
+    };
   },
 
-  componentDidMount:function() {
-    superagent.get('/post/all').end(function(err, res)  {
+  componentDidMount: function componentDidMount() {
+    var _this = this;
+
+    superagent.get('/post/all').end(function (err, res) {
       var firstCode = res.body[0].code;
-      this.setState({posts: res.body, typeofpost: typeof res.body});
-    }.bind(this));
+      _this.setState({ posts: res.body });
+    });
   },
 
-  render:function() {
+  render: function render() {
     console.log('==========');
     console.log(this.props.params.datas);
     console.log(this.state);
     console.log('==========');
-    return (
-      React.createElement("div", {id: "post"}, 
-        React.createElement("h1", null, this.props.params.datas), 
-        React.createElement("p", null, this.state.posts), 
-        React.createElement("p", null, this.state.typeofpost)
-      )
-    );
+    return React.createElement('div', { id: 'post' }, React.createElement('h1', null, this.props.params.datas), React.createElement('p', null, this.state.posts));
   }
 });
 
-
 },{"react":195,"react-router":36,"superagent":196}],7:[function(require,module,exports){
+'use strict';
+
 var React = require('react'),
     Router = require('react-router'),
     Route = Router.Route,
     DefaultRoute = Router.DefaultRoute,
-    App  = require('./components/app.jsx'),
+    App = require('./components/app.jsx'),
     Post = require('./components/views/post/post.jsx'),
-    Home = require('./components/views/home/home.jsx')
-;
+    Home = require('./components/views/home/home.jsx');
 
-module.exports = function() {
-  return (
-    React.createElement(Route, {name: "app", path: "/", handler: App}, 
-      React.createElement(Route, {name: "post", handler: Post}), 
-      React.createElement(DefaultRoute, {handler: Home})
-    )
-  );
+module.exports = function () {
+  return React.createElement(Route, { name: 'app', path: '/', handler: App }, React.createElement(Route, { name: 'post', handler: Post }), React.createElement(DefaultRoute, { handler: Home }));
 };
 
 },{"./components/app.jsx":2,"./components/views/home/home.jsx":5,"./components/views/post/post.jsx":6,"react":195,"react-router":36}],8:[function(require,module,exports){

@@ -20,7 +20,7 @@ module.exports = React.createClass({
   componentDidMount() {
     superagent.get('/post/all').end((err, res) => {
       var firstCode = res.body[0].code;
-      this.setState({posts: res.body, typeofpost: typeof res.body});
+      this.setState({posts: res.body});
     });
   },
 
@@ -33,7 +33,6 @@ module.exports = React.createClass({
       <div id="post">
         <h1>{this.props.params.datas}</h1>
         <p>{this.state.posts}</p>
-        <p>{this.state.typeofpost}</p>
       </div>
     );
   }
