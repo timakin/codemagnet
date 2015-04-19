@@ -13,7 +13,8 @@ var BASE_URL = `http://${HOST}:${PORT}`;
 module.exports = React.createClass({
   getInitialState() {
     return {
-      yo: null
+      posts: [],
+      yo: ["a", "i"]
     }
   },
 
@@ -25,6 +26,7 @@ module.exports = React.createClass({
   },
 
   render() {
+    var postList;
     console.log('==========');
     console.log(this.props.params.datas);
     console.log(this.state);
@@ -32,7 +34,14 @@ module.exports = React.createClass({
     return (
       <div id="post">
         <h1>{this.props.params.datas}</h1>
-        <p>{this.state.posts}</p>
+        <ul>
+          {
+            this.state.posts.map(function(data) {
+              return <li>{data.code}</li>
+            })
+          }
+        </ul>
+
       </div>
     );
   }
