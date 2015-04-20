@@ -29,4 +29,4 @@ EXPOSE 4000
 CMD ["bash"]
 
 WORKDIR /codemagnet
-CMD ["gulp", "serve"]
+CMD ["gulp", "vmserve"]
