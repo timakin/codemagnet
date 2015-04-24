@@ -17,13 +17,13 @@ passport.use('login', new LocalStrategy({
         if (!user){
           console.log('User Not Found with username '+name);
           return done(null, false,
-                req.flash('message', 'User Not found.'));
+            req.flash('message', 'User Not found.'));
         }
         // User exists but wrong password, log the error
         if (!isValidPassword(user, password)){
           console.log('Invalid Password');
           return done(null, false,
-              req.flash('message', 'Invalid Password'));
+            req.flash('message', 'Invalid Password'));
         }
         // User and password both match, return user from
         // done method which will be treated like success

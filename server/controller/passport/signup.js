@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../user.model');
+var bCrypt = require('bcrypt-nodejs');
 
 passport.use('signup', new LocalStrategy({
     passReqToCallback : true
@@ -27,8 +28,6 @@ passport.use('signup', new LocalStrategy({
           newUser.name = name;
           newUser.password = createHash(password);
           newUser.email = req.param('email');
-          newUser.firstName = req.param('firstName');
-          newUser.lastName = req.param('lastName');
 
           // save the user
           newUser.save(function(err) {
@@ -46,5 +45,10 @@ passport.use('signup', new LocalStrategy({
     // Delay the execution of findOrCreateUser and execute
     // the method in the next tick of the event loop
     process.nextTick(findOrCreateUser);
-  });
+  })
 );
+
+// Generates hash using bCrypt
+var createHash = function(password){
+ return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+}

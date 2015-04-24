@@ -66,10 +66,10 @@ var Link = Router.Link,
     Route = Router.Route;
 
 module.exports = React.createClass({ displayName: 'exports',
-    render: function render() {
+  render: function render() {
 
-        return React.createElement('div', { id: 'home' }, React.createElement('h1', null, 'this is home'), React.createElement('h1', null, 'Go to ', React.createElement(Link, { to: '/post' }, 'Post')));
-    }
+    return React.createElement('div', { id: 'home' }, React.createElement('h1', null, 'this is home'), React.createElement('h1', null, 'Go to ', React.createElement(Link, { to: '/post' }, 'Post')), React.createElement('form', { action: '/auth/login', method: 'POST' }, React.createElement('input', { type: 'text', name: 'name', 'class': 'form-control' }), React.createElement('input', { type: 'password', name: 'password', 'class': 'form-control' }), React.createElement('button', { 'class': 'btn btn-lg btn-primary btn-block', type: 'submit' })), React.createElement('a', { href: '/auth/signup' }, 'Register'));
+  }
 });
 
 },{"react":195,"react-router":36}],6:[function(require,module,exports){

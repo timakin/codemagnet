@@ -17,11 +17,12 @@ var browserify = require('browserify');
 var reactify = require('reactify');
 var session = require('express-session');
 var passport = require('passport');
+var cookieParser = require('cookie-parser')
 require('node-jsx').install({ harmony: true });
 
 
 // ===== passport setting
-app.use(express.cookieParser());
+app.use(cookieParser());
 app.use(session({secret: 'codemagnet secret'}));
 app.use(passport.initialize());
 app.use(passport.session());
