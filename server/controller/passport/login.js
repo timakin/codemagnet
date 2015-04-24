@@ -6,7 +6,7 @@ var bCrypt = require('bcrypt-nodejs');
 passport.use('login', new LocalStrategy({
     passReqToCallback : true
   },
-  function(req, username, password, done) {
+  function(req, name, password, done) {
     // check in mongo if a user with username exists or not
     User.findOne({'name' :  name },
       function(err, user) {
