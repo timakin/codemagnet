@@ -18,6 +18,23 @@ var reactify = require('reactify');
 var passport = require('passport');
 require('node-jsx').install({ harmony: true });
 
+
+// ===== passport setting
+app.use(express.cookieParser());
+app.use(express.session({secret: 'codemagnet secret'}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(function(user, done) {
+  done(null, user._id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+
 // ===== server api routing
 app.use(router);
 app.use('/', require('./controller'));
@@ -58,13 +75,6 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../client/public'));
 app.use(express.static(path.join(__dirname, '../client/public')));
-
-// ===== passport setting
-app.use(express.cookieParser());
-app.use(express.session({secret: 'codemagnet secret'}));
-app.use(passport.initialize());
-app.use(passport.session());
-
 
 // ===== server listen port
 app.set('port', 4000);
