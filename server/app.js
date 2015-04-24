@@ -60,6 +60,10 @@ app.set('views', path.join(__dirname, '../client/public'));
 app.use(express.static(path.join(__dirname, '../client/public')));
 
 // ===== passport setting
+app.use(express.cookieParser());
+app.use(express.session({secret: 'codemagnet secret'}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // ===== server listen port
