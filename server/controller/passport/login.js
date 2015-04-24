@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../user.model');
+var bCrypt = require('bcrypt-nodejs');
 
 passport.use('login', new LocalStrategy({
     passReqToCallback : true
