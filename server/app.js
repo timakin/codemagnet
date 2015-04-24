@@ -15,6 +15,7 @@ var React = require('react');
 var Router = require('react-router');
 var browserify = require('browserify');
 var reactify = require('reactify');
+var passport = require('passport');
 require('node-jsx').install({ harmony: true });
 
 // ===== server api routing
@@ -58,6 +59,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '../client/public'));
 app.use(express.static(path.join(__dirname, '../client/public')));
 
+// ===== passport setting
 
 
 // ===== server listen port
