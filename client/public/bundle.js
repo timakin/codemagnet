@@ -207,8 +207,7 @@ var BASE_URL = 'http://' + HOST + ':' + PORT;
 module.exports = React.createClass({ displayName: 'exports',
   getInitialState: function getInitialState() {
     return {
-      posts: [],
-      yo: ['a', 'i']
+      posts: []
     };
   },
 
@@ -216,17 +215,11 @@ module.exports = React.createClass({ displayName: 'exports',
     var _this = this;
 
     superagent.get('/post/all').end(function (err, res) {
-      var firstCode = res.body[0].code;
       _this.setState({ posts: res.body });
     });
   },
 
   render: function render() {
-    var postList;
-    console.log('==========');
-    console.log(this.props.params.datas);
-    console.log(this.state);
-    console.log('==========');
     return React.createElement('div', { id: 'post' }, React.createElement('h1', null, this.props.params.datas), React.createElement('ul', null, this.state.posts.map(function (data) {
       return React.createElement('li', null, data.code);
     })));

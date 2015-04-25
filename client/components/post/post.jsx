@@ -13,24 +13,17 @@ var BASE_URL = `http://${HOST}:${PORT}`;
 module.exports = React.createClass({
   getInitialState() {
     return {
-      posts: [],
-      yo: ["a", "i"]
+      posts: []
     }
   },
 
   componentDidMount() {
     superagent.get('/post/all').end((err, res) => {
-      var firstCode = res.body[0].code;
       this.setState({posts: res.body});
     });
   },
 
   render() {
-    var postList;
-    console.log('==========');
-    console.log(this.props.params.datas);
-    console.log(this.state);
-    console.log('==========');
     return (
       <div id="post">
         <h1>{this.props.params.datas}</h1>
