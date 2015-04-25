@@ -4,6 +4,7 @@ var React = require('react'),
     DefaultRoute = Router.DefaultRoute,
     App  = require('./components/app.jsx'),
     Post = require('./components/views/post/post.jsx'),
+    Register = require('./components/auth/register.jsx'),
     Home = require('./components/views/home/home.jsx')
 ;
 
@@ -11,6 +12,7 @@ module.exports = function() {
   return (
     <Route name="app" path="/" handler={App}>
       <Route name="post" handler={Post} />
+      <Route name="register" handler={Register} />
       <DefaultRoute handler={Home} />
     </Route>
   );

@@ -9,14 +9,13 @@ module.exports  = React.createClass({
 
         return (
           <div id="home">
-            <h1>this is home</h1>
-            <h1>Go to <Link to="/post">Post</Link></h1>
-            <form action="/auth/login" method="POST">
-              <input type="text" name="name" class='form-control' />
-              <input type='password' name='password' class='form-control' />
+            <h1>Register</h1>
+            <form action="/auth/signup" method="POST">
+              <input type="text" name="name" class='form-control' placeholder="name" />
+              <input type="text" name="email" class='form-control' placeholder="email" />
+              <input type='password' name='password' class='form-control' placeholder="password" />
               <button class='btn btn-lg btn-primary btn-block' type='submit' />
             </form>
-            <a href="/register">Register</a>
           </div>
         );
 

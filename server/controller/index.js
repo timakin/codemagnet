@@ -31,22 +31,14 @@ router.route('/')
 router.route('/auth/login')
   .post(passport.authenticate('login', {
     successRedirect: '/',
-    failureRedirect: '/',
-    failureFlash : true
+    failureRedirect: '/'
   }));
-
-  /* GET Registration Page */
-router.route('/auth/signup')
-  .get(function(req, res){
-    res.render('register',{message: req.flash('message')});
-  });
 
   /* Handle Registration POST */
 router.route('/auth/signup')
   .post(passport.authenticate('signup', {
     successRedirect: '/',
-    failureRedirect: '/signup',
-    failureFlash : true
+    failureRedirect: '/register'
   }));
 
 router.route('/auth/signout').get(function(req, res) {
