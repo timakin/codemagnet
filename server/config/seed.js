@@ -1,7 +1,7 @@
 'use strict'
 
 
-var Post = require('../controller/post.model.js');
+var Post = require('../models/post.model.js');
 
 module.exports = function(){
     Post.find({}).remove(function() {
