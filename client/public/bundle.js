@@ -44,17 +44,17 @@ var React = require('react'),
     Route = Router.Route,
     fetch = require('node-fetch');
 
-var SignupFrom = (function (_React$Component) {
-  function SignupFrom(props) {
-    _classCallCheck(this, SignupFrom);
+var SignupForm = (function (_React$Component) {
+  function SignupForm(props) {
+    _classCallCheck(this, SignupForm);
 
-    _get(Object.getPrototypeOf(SignupFrom.prototype), 'constructor', this).call(this, props);
+    _get(Object.getPrototypeOf(SignupForm.prototype), 'constructor', this).call(this, props);
     this.state = { name: '', email: '', password: '' };
   }
 
-  _inherits(SignupFrom, _React$Component);
+  _inherits(SignupForm, _React$Component);
 
-  _createClass(SignupFrom, [{
+  _createClass(SignupForm, [{
     key: 'handleNameChange',
     value: function handleNameChange(e) {
       this.setState({ name: e.target.value });
@@ -93,7 +93,7 @@ var SignupFrom = (function (_React$Component) {
     }
   }]);
 
-  return SignupFrom;
+  return SignupForm;
 })(React.Component);
 
 SignupForm.propTypes = {
