@@ -17,25 +17,17 @@ var browserify = require('browserify');
 var reactify = require('reactify');
 var session = require('express-session');
 var passport = require('passport');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
+var flash    = require('connect-flash');
 require('node-jsx').install({ harmony: true });
-
+require('./config/passport')(passport);
 
 // ===== passport setting
 app.use(cookieParser());
 app.use(session({secret: 'codemagnet secret'}));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-
-passport.serializeUser(function(user, done) {
-  done(null, user._id);
-});
-
-passport.deserializeUser(function(id, done) {
-  User.findById(id, function(err, user) {
-    done(err, user);
-  });
-});
 
 // ===== server api routing
 app.use(router);

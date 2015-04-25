@@ -2,10 +2,10 @@ var express = require('express');
 var app = express();
 var router = express.Router();
 var passport = require('passport');
+var flash = require('connect-flash');
 require('./user.js')(router);
 require('./post.js')(router);
-require('./passport/login');
-require('./passport/signup');
+require('../config/passport')(passport);
 
 
 router.route('/*')
@@ -34,11 +34,19 @@ router.route('/auth/login')
     failureRedirect: '/'
   }));
 
+router.route('/register').get(function(req, res, next){
+  console.log("index: /register");
+  next();
+});
+
   /* Handle Registration POST */
 router.route('/auth/signup')
-  .post(passport.authenticate('signup', {
+  .post(function(req, res) {
+    console.log("request exists");
+  },passport.authenticate('signup', {
     successRedirect: '/',
-    failureRedirect: '/register'
+    failureRedirect: '/register',
+    failureFlash: true
   }));
 
 router.route('/auth/signout').get(function(req, res) {
