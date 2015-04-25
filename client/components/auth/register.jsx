@@ -6,15 +6,19 @@ var SignupForm = require('./_signup_form.jsx');
 var Link = Router.Link,
     Route = Router.Route;
 
-module.exports  = React.createClass({
-    render: function(){
+class Register extends React.Component {
+  constructor() {
+    super();
+  }
 
-        return (
-          <div id="home">
-            <h1>Register</h1>
-            <SignupForm />
-          </div>
-        );
+  render() {
+    return (
+      <div id="home">
+        <h1>Register</h1>
+        <SignupForm />
+      </div>
+    );
+  }
+}
 
-    }
-});
+module.exports = Register;
