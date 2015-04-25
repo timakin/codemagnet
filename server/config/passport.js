@@ -15,7 +15,7 @@ module.exports = function(passport) {
         console.log(req.param);
         console.log(name);
         findOrCreateUser = function(){
-            User.findOne({'name':name},function(err, user) {
+            User.findOne({'name': name},function(err, user) {
                 if (err)
                     return done(err);
                 if (user)

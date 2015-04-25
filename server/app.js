@@ -22,7 +22,7 @@ require('./config/passport')(passport);
 
 // ===== passport setting
 app.use(cookieParser());
-app.use(session({secret: 'codemagnet secret'}));
+app.use(session({secret: 'codemagnet secret', resave: true, saveUninitialized: true}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
