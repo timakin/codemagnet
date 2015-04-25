@@ -32,24 +32,6 @@ module.exports = App;
 
 var React = require('react');
 var Router = require('react-router');
-var Button = require('react-button');
-var SignupForm = require('./signupForm.jsx');
-
-var Link = Router.Link,
-    Route = Router.Route;
-
-module.exports = React.createClass({ displayName: 'exports',
-    render: function render() {
-
-        return React.createElement('div', { id: 'home' }, React.createElement('h1', null, 'Register'), React.createElement(SignupForm, null));
-    }
-});
-
-},{"./signupForm.jsx":4,"react":211,"react-button":11,"react-router":52}],4:[function(require,module,exports){
-'use strict';
-
-var React = require('react');
-var Router = require('react-router');
 var Link = Router.Link,
     Route = Router.Route;
 
@@ -79,7 +61,25 @@ module.exports = React.createClass({ displayName: 'exports',
   }
 });
 
-},{"react":211,"react-router":52}],5:[function(require,module,exports){
+},{"react":211,"react-router":52}],4:[function(require,module,exports){
+'use strict';
+
+var React = require('react');
+var Router = require('react-router');
+var Button = require('react-button');
+var SignupForm = require('./_signup_form.jsx');
+
+var Link = Router.Link,
+    Route = Router.Route;
+
+module.exports = React.createClass({ displayName: 'exports',
+    render: function render() {
+
+        return React.createElement('div', { id: 'home' }, React.createElement('h1', null, 'Register'), React.createElement(SignupForm, null));
+    }
+});
+
+},{"./_signup_form.jsx":3,"react":211,"react-button":11,"react-router":52}],5:[function(require,module,exports){
 "use strict";
 
 var React = require("react");
@@ -174,15 +174,15 @@ var React = require('react'),
     Route = Router.Route,
     DefaultRoute = Router.DefaultRoute,
     App = require('./components/app.jsx'),
-    Post = require('./components/views/post/post.jsx'),
+    Post = require('./components/post/post.jsx'),
     Register = require('./components/auth/register.jsx'),
-    Home = require('./components/views/home/home.jsx');
+    Home = require('./components/home/home.jsx');
 
 module.exports = function () {
   return React.createElement(Route, { name: 'app', path: '/', handler: App }, React.createElement(Route, { name: 'post', handler: Post }), React.createElement(Route, { name: 'register', handler: Register }), React.createElement(DefaultRoute, { handler: Home }));
 };
 
-},{"./components/app.jsx":2,"./components/auth/register.jsx":3,"./components/views/home/home.jsx":7,"./components/views/post/post.jsx":8,"react":211,"react-router":52}],10:[function(require,module,exports){
+},{"./components/app.jsx":2,"./components/auth/register.jsx":4,"./components/home/home.jsx":7,"./components/post/post.jsx":8,"react":211,"react-router":52}],10:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};

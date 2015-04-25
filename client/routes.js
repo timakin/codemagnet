@@ -3,9 +3,9 @@ var React = require('react'),
     Route = Router.Route,
     DefaultRoute = Router.DefaultRoute,
     App  = require('./components/app.jsx'),
-    Post = require('./components/views/post/post.jsx'),
+    Post = require('./components/post/post.jsx'),
     Register = require('./components/auth/register.jsx'),
-    Home = require('./components/views/home/home.jsx')
+    Home = require('./components/home/home.jsx')
 ;
 
 module.exports = function() {
