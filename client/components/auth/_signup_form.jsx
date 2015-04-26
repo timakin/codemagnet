@@ -4,7 +4,7 @@ var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link,
     Route = Router.Route,
-    fetch = require('node-fetch');
+    request = require('superagent');
 
 class SignupForm extends React.Component {
   constructor(props){
@@ -26,18 +26,16 @@ class SignupForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    fetch(this.props.action, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
+    request
+      .post(this.props.action)
+      .send({
         name: this.state.name,
         email: this.state.email,
         password: this.state.password
       })
-    });
-    this.setState = ({name: '', email: '', password: ''});
+      .end(function(err, res){
+        this.setState = ({name: '', email: '', password: ''});
+      });
   }
 
   render() {
