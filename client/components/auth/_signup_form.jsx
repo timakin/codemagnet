@@ -9,6 +9,7 @@ var React = require('react'),
 class SignupForm extends React.Component {
   constructor(props){
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {name: '', email: '', password: ''};
   }
 
@@ -25,6 +26,7 @@ class SignupForm extends React.Component {
   }
 
   handleSubmit(e) {
+    console.log(this.props.action);
     e.preventDefault();
     request
       .post(this.props.action)

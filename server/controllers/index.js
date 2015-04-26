@@ -41,9 +41,7 @@ router.route('/register').get(function(req, res, next){
 
   /* Handle Registration POST */
 router.route('/auth/signup')
-  .post(function(req, res) {
-    console.log("request exists");
-  },passport.authenticate('signup', {
+  .post(passport.authenticate('signup', {
     successRedirect: '/',
     failureRedirect: '/register',
     failureFlash: true

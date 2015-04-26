@@ -49,6 +49,7 @@ var SignupForm = (function (_React$Component) {
     _classCallCheck(this, SignupForm);
 
     _get(Object.getPrototypeOf(SignupForm.prototype), 'constructor', this).call(this, props);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.state = { name: '', email: '', password: '' };
   }
 
@@ -72,19 +73,12 @@ var SignupForm = (function (_React$Component) {
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
-      e.preventDefault();
-      request.post(this.props.action).send({
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password
-      }).end(function (err, res) {
-        this.setState = { name: '', email: '', password: '' };
-      });
+      console.log(this.props.name);
     }
   }, {
     key: 'render',
     value: function render() {
-      return React.createElement('form', { action: this.props.action, method: this.props.method, onSubmit: this.handleSubmit }, React.createElement('input', { type: 'text', name: 'name', placeholder: 'Name', onChange: this.handleNameChange }), React.createElement('input', { type: 'text', name: 'email', placeholder: 'Email', onChange: this.handleEmailChange }), React.createElement('input', { type: 'password', name: 'password', placeholder: 'Password', onChange: this.handlePasswordChange }), React.createElement('button', null, 'Submit'));
+      return React.createElement('form', { onSubmit: this.handleSubmit }, React.createElement('input', { type: 'text', name: 'name', placeholder: 'Name', onChange: this.handleNameChange }), React.createElement('input', { type: 'text', name: 'email', placeholder: 'Email', onChange: this.handleEmailChange }), React.createElement('input', { type: 'password', name: 'password', placeholder: 'Password', onChange: this.handlePasswordChange }), React.createElement('button', null, 'Submit'));
     }
   }]);
 
