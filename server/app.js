@@ -21,6 +21,7 @@ require('node-jsx').install({ harmony: true });
 
 // ===== passport setting
 require('./config/passport')(passport);
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({secret: 'codemagnet secret', resave: true, saveUninitialized: true}));
 app.use(flash());
