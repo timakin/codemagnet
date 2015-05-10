@@ -9,6 +9,14 @@ module.exports = function(router){
       next();
     });
 
+  router.route('/post/add')
+    .post(function(req,res,next){
+      console.log("post: /post/add");
+      console.log(res.body);
+      res.redirect("/post")
+      next();
+    });
+
   router.route('/post/:name')
     .get(function(req,res,next){
       console.log("post: /post/:name", req.params);

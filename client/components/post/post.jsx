@@ -1,7 +1,8 @@
 'use strict';
 var React = require('react');
 var Router = require('react-router');
-var superagent = require('superagent');
+var request= require('superagent');
+var AddPost = require('./_add_post.jsx');
 
 var Link = Router.Link,
     Route = Router.Route;
@@ -18,7 +19,7 @@ module.exports = React.createClass({
   },
 
   componentDidMount() {
-    superagent.get('/post/all').end((err, res) => {
+    request.get('/post/all').end((err, res) => {
       this.setState({posts: res.body});
     });
   },
@@ -34,7 +35,7 @@ module.exports = React.createClass({
             })
           }
         </ul>
-
+        <AddPost/>
       </div>
     );
   }
