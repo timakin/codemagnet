@@ -21,8 +21,11 @@ require('node-jsx').install({ harmony: true });
 
 // ===== passport setting
 require('./config/passport')(passport);
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({secret: 'codemagnet secret', resave: true, saveUninitialized: true}));
+app.use(session({secret: 'codemagnet secret', resave: true, saveUninitialized: true}));  // TODO: hide this!!
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -54,14 +57,8 @@ app.use(function(req, res) {
 });
 
 
-// ===== view engine setup
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-
+// comment out if you put down the favicon in /public
+// app.use(favicon(__dirname + '/public/favicon.ico'));
 
 // ===== publish directory
 app.set('view engine', 'ejs');
