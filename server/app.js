@@ -21,6 +21,8 @@ require('node-jsx').install({ harmony: true });
 
 // ===== passport setting
 require('./config/passport')(passport);
+app.use(logger('dev'));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({secret: 'codemagnet secret', resave: true, saveUninitialized: true}));
@@ -53,16 +55,6 @@ app.use(function(req, res) {
     }));
   });
 });
-
-
-// ===== view engine setup
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-
 
 // ===== publish directory
 app.set('view engine', 'ejs');
