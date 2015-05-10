@@ -30,70 +30,43 @@ module.exports = App;
 },{"./footer/footer.jsx":5,"./header/header.jsx":6,"react":218,"react-router":49}],3:[function(require,module,exports){
 'use strict';
 
-var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-
 var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link,
     Route = Router.Route,
     request = require('superagent');
 
-var SignupForm = (function (_React$Component) {
-  function SignupForm(props) {
-    _classCallCheck(this, SignupForm);
+module.exports = React.createClass({ displayName: 'exports',
+  getDefaultProps: function getDefaultProps() {
+    return {
+      action: '/auth/signup/local',
+      method: 'POST'
+    };
+  },
+  getInitialState: function getInitialState() {
+    return { name: '', password: '' };
+  },
+  handleNameChange: function handleNameChange(e) {
+    this.setState({ name: e.target.value });
+  },
+  handlePasswordChange: function handlePasswordChange(e) {
+    this.setState({ password: e.target.value });
+  },
+  handleSubmit: function handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state);
+    request.post(this.props.action).send({
+      name: this.state.name,
+      password: this.state.password
+    }).end(function (err, res) {
+      console.log('Request was sent.');
+    });
+  },
 
-    _get(Object.getPrototypeOf(SignupForm.prototype), 'constructor', this).call(this, props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = { name: '', email: '', password: '' };
+  render: function render() {
+    return React.createElement('form', { action: this.props.action, method: this.props.method, onSubmit: this.handleSubmit }, React.createElement('input', { type: 'text', name: 'name', placeholder: 'Name', onChange: this.handleNameChange }), React.createElement('input', { type: 'password', name: 'password', placeholder: 'Password', onChange: this.handlePasswordChange }), React.createElement('button', null, 'Submit'));
   }
-
-  _inherits(SignupForm, _React$Component);
-
-  _createClass(SignupForm, [{
-    key: 'handleNameChange',
-    value: function handleNameChange(e) {
-      this.setState({ name: e.target.value });
-    }
-  }, {
-    key: 'handleEmailChange',
-    value: function handleEmailChange(e) {
-      this.setState({ email: e.target.value });
-    }
-  }, {
-    key: 'handlePasswordChange',
-    value: function handlePasswordChange(e) {
-      this.setState({ password: e.target.value });
-    }
-  }, {
-    key: 'handleSubmit',
-    value: function handleSubmit(e) {
-      console.log(this.props.name);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return React.createElement('form', { onSubmit: this.handleSubmit }, React.createElement('input', { type: 'text', name: 'name', placeholder: 'Name', onChange: this.handleNameChange }), React.createElement('input', { type: 'text', name: 'email', placeholder: 'Email', onChange: this.handleEmailChange }), React.createElement('input', { type: 'password', name: 'password', placeholder: 'Password', onChange: this.handlePasswordChange }), React.createElement('button', null, 'Submit'));
-    }
-  }]);
-
-  return SignupForm;
-})(React.Component);
-
-SignupForm.propTypes = {
-  action: React.PropTypes.string.isRequired,
-  method: React.PropTypes.string };
-
-SignupForm.defaultProps = {
-  action: '/auth/signup',
-  method: 'POST' };
-
-module.exports = SignupForm;
+});
 
 },{"react":218,"react-router":49,"superagent":219}],4:[function(require,module,exports){
 'use strict';

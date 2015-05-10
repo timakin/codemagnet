@@ -6,60 +6,43 @@ var React = require('react'),
     Route = Router.Route,
     request = require('superagent');
 
-class SignupForm extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {name: '', email: '', password: ''};
-  }
-
-  handleNameChange(e) {
+module.exports = React.createClass({
+  getDefaultProps: function() {
+    return {
+      action: '/auth/signup/local',
+      method: 'POST'
+    }
+  },
+  getInitialState: function() {
+    return {name: '', password: ''}
+  },
+  handleNameChange: function(e) {
     this.setState({name: e.target.value});
-  }
-
-  handleEmailChange(e) {
-    this.setState({email: e.target.value});
-  }
-
-  handlePasswordChange(e) {
+  },
+  handlePasswordChange: function(e) {
     this.setState({password: e.target.value});
-  }
-
-  handleSubmit(e) {
-    console.log(this.props.action);
+  },
+  handleSubmit: function(e) {
     e.preventDefault();
+    console.log(this.state);
     request
-      .post(this.props.action)
-      .send({
-        name: this.state.name,
-        email: this.state.email,
-        password: this.state.password
-      })
-      .end(function(err, res){
-        this.setState = ({name: '', email: '', password: ''});
-      });
-  }
+        .post(this.props.action)
+        .send({
+          name: this.state.name,
+          password: this.state.password
+        })
+        .end(function(err, res){
+          console.log("Request was sent.");
+        });
+  },
 
-  render() {
+  render : function() {
     return (
-      <form action={this.props.action} method={this.props.method} onSubmit={this.handleSubmit}>
-        <input type="text" name="name" placeholder="Name" onChange={this.handleNameChange} />
-        <input type="text" name="email" placeholder="Email" onChange={this.handleEmailChange} />
-        <input type="password" name="password" placeholder="Password" onChange={this.handlePasswordChange}/>
-        <button>Submit</button>
-      </form>
+        <form action={this.props.action} method={this.props.method} onSubmit={this.handleSubmit}>
+          <input type="text" name="name" placeholder="Name" onChange={this.handleNameChange} />
+          <input type="password" name="password" placeholder="Password" onChange={this.handlePasswordChange}/>
+          <button>Submit</button>
+        </form>
     );
   }
-}
-
-SignupForm.propTypes = {
-  action: React.PropTypes.string.isRequired,
-  method: React.PropTypes.string,
-}
-
-SignupForm.defaultProps = {
-  action: '/auth/signup',
-  method: 'POST',
-}
-
-module.exports = SignupForm;
+});

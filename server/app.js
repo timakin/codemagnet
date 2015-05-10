@@ -18,9 +18,9 @@ var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var flash    = require('connect-flash');
 require('node-jsx').install({ harmony: true });
-require('./config/passport')(passport);
 
 // ===== passport setting
+require('./config/passport')(passport);
 app.use(cookieParser());
 app.use(session({secret: 'codemagnet secret', resave: true, saveUninitialized: true}));
 app.use(flash());
