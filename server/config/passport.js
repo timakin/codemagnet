@@ -14,30 +14,24 @@ module.exports = function(passport) {
       });
   });
 
-  passport.use('local-signup', new LocalStrategy({
-      usernameField : 'username',
-      passwordField : 'password',
-      passReqToCallback : true
-    }, function(req, username, password, done) {
-      process.nextTick(function() {
-        console.log("signup req:");
-        User.findOne({'username': username},function(err, user) {
-          if (err) { return done(err) };
-          if (user) { return done(null, false, req.flash('message','User Already Exists')) };
-          var newUser = new User();
-          newUser.username = username;
-          newUser.password = createHash(password);
-          newUser.save(function(err) {
-            if (err) {
-              console.log('Error in Saving user: '+err);
-              throw err;
-            }
-            console.log('User Registration succesful');
-            return done(null, newUser);
-          });
-        });
-        console.log("after passport use");
+  passport.use(new LocalStrategy(function(username, password, done) {
+    console.log("signup req:");
+    User.findOne({'username': username},function(err, user) {
+      if (err) { return done(err) };
+      if (user) { return done(null, false) };
+      var newUser = new User();
+      newUser.username = username;
+      newUser.password = createHash(password);
+      newUser.save(function(err) {
+        if (err) {
+          console.log('Error in Saving user: '+err);
+          throw err;
+        }
+        console.log('User Registration succesful');
+        return done(null, newUser);
       });
+    });
+    console.log("after passport use");
   }));
 
   var isValidPassword = function(user, password){
