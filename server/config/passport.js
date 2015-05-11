@@ -14,11 +14,17 @@ module.exports = function(passport) {
       });
   });
 
-  passport.use(new LocalStrategy(function(username, password, done) {
+  passport.use(new LocalStrategy({
+    usernameField: 'username',
+    passwordField: 'password'
+  }, function(username, password, done) {
     console.log("signup req:");
     User.findOne({'username': username},function(err, user) {
       if (err) { return done(err) };
-      if (user) { return done(null, false) };
+      if (user) {
+        console.log("That user already exists.");
+        return done(null, false);
+      };
       var newUser = new User();
       newUser.username = username;
       newUser.password = createHash(password);
@@ -31,7 +37,6 @@ module.exports = function(passport) {
         return done(null, newUser);
       });
     });
-    console.log("after passport use");
   }));
 
   var isValidPassword = function(user, password){
