@@ -44,10 +44,10 @@ module.exports = React.createClass({ displayName: 'exports',
     };
   },
   getInitialState: function getInitialState() {
-    return { name: '', password: '' };
+    return { username: '', password: '' };
   },
-  handleNameChange: function handleNameChange(e) {
-    this.setState({ name: e.target.value });
+  handleUsernameChange: function handleUsernameChange(e) {
+    this.setState({ username: e.target.value });
   },
   handlePasswordChange: function handlePasswordChange(e) {
     this.setState({ password: e.target.value });
@@ -56,7 +56,7 @@ module.exports = React.createClass({ displayName: 'exports',
     e.preventDefault();
     console.log(this.state);
     request.post(this.props.action).send({
-      name: this.state.name,
+      username: this.state.username,
       password: this.state.password
     }).end(function (err, res) {
       console.log('Request was sent.');
@@ -64,7 +64,7 @@ module.exports = React.createClass({ displayName: 'exports',
   },
 
   render: function render() {
-    return React.createElement('form', { action: this.props.action, method: this.props.method, onSubmit: this.handleSubmit }, React.createElement('input', { type: 'text', name: 'name', placeholder: 'Name', onChange: this.handleNameChange }), React.createElement('input', { type: 'password', name: 'password', placeholder: 'Password', onChange: this.handlePasswordChange }), React.createElement('button', null, 'Submit'));
+    return React.createElement('form', { action: this.props.action, method: this.props.method, onSubmit: this.handleSubmit }, React.createElement('input', { type: 'text', name: 'username', placeholder: 'Username', onChange: this.handleUsernameChange }), React.createElement('input', { type: 'password', name: 'password', placeholder: 'Password', onChange: this.handlePasswordChange }), React.createElement('button', null, 'Submit'));
   }
 });
 

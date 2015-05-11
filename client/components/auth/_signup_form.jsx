@@ -14,10 +14,10 @@ module.exports = React.createClass({
     }
   },
   getInitialState: function() {
-    return {name: '', password: ''}
+    return {username: '', password: ''}
   },
-  handleNameChange: function(e) {
-    this.setState({name: e.target.value});
+  handleUsernameChange: function(e) {
+    this.setState({username: e.target.value});
   },
   handlePasswordChange: function(e) {
     this.setState({password: e.target.value});
@@ -28,7 +28,7 @@ module.exports = React.createClass({
     request
         .post(this.props.action)
         .send({
-          name: this.state.name,
+          username: this.state.username,
           password: this.state.password
         })
         .end(function(err, res){
@@ -39,7 +39,7 @@ module.exports = React.createClass({
   render : function() {
     return (
         <form action={this.props.action} method={this.props.method} onSubmit={this.handleSubmit}>
-          <input type="text" name="name" placeholder="Name" onChange={this.handleNameChange} />
+          <input type="text" name="username" placeholder="Username" onChange={this.handleUsernameChange} />
           <input type="password" name="password" placeholder="Password" onChange={this.handlePasswordChange}/>
           <button>Submit</button>
         </form>
