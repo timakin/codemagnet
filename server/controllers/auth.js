@@ -14,14 +14,11 @@ module.exports = function(router, passport) {
   });
 
   /* Handle Registration POST */
-  router.post('/auth/signup/local', function(req, res, next) {
-    console.log(req.body);
-    passport.authenticate('local', {
-      successRedirect: '/',
-      failureRedirect: '/register',
-      failureFlash: true
-    });
-  });
+  router.post('/auth/signup/local', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/register',
+    failureFlash: true
+  }));
 
   router.route('/auth/signout').get(function(req, res) {
       req.logout();
