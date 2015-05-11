@@ -14,7 +14,10 @@ module.exports = function(passport) {
       });
   });
 
-  passport.use(new LocalStrategy(function(username, password, done) {
+  passport.use(new LocalStrategy({
+        usernameField: 'name',
+        passwordField: 'password'
+    }, function(username, password, done) {
     console.log("signup req:");
     User.findOne({'username': username},function(err, user) {
       if (err) { return done(err) };
