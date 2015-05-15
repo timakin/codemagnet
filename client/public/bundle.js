@@ -34,9 +34,12 @@ var React = require('react'),
     Router = require('react-router'),
     Link = Router.Link,
     Route = Router.Route,
+    Navigation = Router.Navigation,
     request = require('superagent');
 
 module.exports = React.createClass({ displayName: 'exports',
+  mixins: [Navigation],
+
   getDefaultProps: function getDefaultProps() {
     return {
       action: '/auth/signup/local',
@@ -54,12 +57,17 @@ module.exports = React.createClass({ displayName: 'exports',
   },
   handleSubmit: function handleSubmit(e) {
     e.preventDefault();
+    var self = this;
     console.log(this.state);
     request.post(this.props.action).send({
       username: this.state.username,
       password: this.state.password
     }).end(function (err, res) {
-      console.log('Request was sent.');
+      console.log('Responded.');
+      if (!err) {
+        console.log('No error.');
+        self.transitionTo('/');
+      }
     });
   },
 
