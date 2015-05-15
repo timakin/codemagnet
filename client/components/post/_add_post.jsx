@@ -6,25 +6,27 @@ var request = require('superagent');
 var Link = Router.Link,
     Route = Router.Route;
 
-class AddPost extends React.Component {
-  constructor() {
-    super();
-    this._handleSubmit = this._handleSubmit.bind(this);
-  }
-
-  handleCodeChange(e) {
+module.exports = React.createClass({
+  getDefaultProps: function() {
+    return {
+      action: '/post/add',
+      method: 'POST'
+    }
+  },
+  getInitialState: function() {
+    return {code: '', description: '', section: ''}
+  },
+  handleCodeChange: function(e) {
     this.setState({code: e.target.value});
-  }
-
-  handleDescChange(e) {
+  },
+  handleDescChange: function(e) {
     this.setState({description: e.target.value});
-  }
-
-  handleSectionChange(e) {
+  },
+  handleSectionChange: function(e) {
     this.setState({section: e.target.value});
-  }
-
-  _handleSubmit() {
+  },
+  _handleSubmit: function(e) {
+    var self = this;
     e.preventDefault();
     console.log(this.state);
     request
@@ -37,9 +39,8 @@ class AddPost extends React.Component {
         .end(function(err, res){
           console.log("Post request was sent.");
         });
-  }
-
-  render() {
+  },
+  render: function() {
     return (
       <div>
         <form action={this.props.action} method={this.props.method} onSubmit={this._handleSubmit}>
@@ -51,12 +52,4 @@ class AddPost extends React.Component {
       </div>
     )
   }
-
-}
-
-AddPost.defaultProps = {
-  action: "/post/add",
-  method: "POST"
-}
-
-module.exports = AddPost;
+});

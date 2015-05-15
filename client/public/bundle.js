@@ -163,15 +163,6 @@ module.exports = React.createClass({ displayName: 'exports',
 
 },{"react":219,"react-router":50}],8:[function(require,module,exports){
 'use strict';
-
-var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } };
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-var _get = function get(object, property, receiver) { var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
-var _inherits = function (subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) subClass.__proto__ = superClass; };
-
 var React = require('react');
 var Router = require('react-router');
 var request = require('superagent');
@@ -179,60 +170,41 @@ var request = require('superagent');
 var Link = Router.Link,
     Route = Router.Route;
 
-var AddPost = (function (_React$Component) {
-  function AddPost() {
-    _classCallCheck(this, AddPost);
-
-    _get(Object.getPrototypeOf(AddPost.prototype), 'constructor', this).call(this);
-    this._handleSubmit = this._handleSubmit.bind(this);
+module.exports = React.createClass({ displayName: 'exports',
+  getDefaultProps: function getDefaultProps() {
+    return {
+      action: '/post/add',
+      method: 'POST'
+    };
+  },
+  getInitialState: function getInitialState() {
+    return { code: '', description: '', section: '' };
+  },
+  handleCodeChange: function handleCodeChange(e) {
+    this.setState({ code: e.target.value });
+  },
+  handleDescChange: function handleDescChange(e) {
+    this.setState({ description: e.target.value });
+  },
+  handleSectionChange: function handleSectionChange(e) {
+    this.setState({ section: e.target.value });
+  },
+  _handleSubmit: function _handleSubmit(e) {
+    var self = this;
+    e.preventDefault();
+    console.log(this.state);
+    request.post(this.props.action).send({
+      code: this.state.code,
+      description: this.state.description,
+      section: this.state.section
+    }).end(function (err, res) {
+      console.log('Post request was sent.');
+    });
+  },
+  render: function render() {
+    return React.createElement('div', null, React.createElement('form', { action: this.props.action, method: this.props.method, onSubmit: this._handleSubmit }, React.createElement('input', { type: 'text', name: 'code', placeholder: 'Code', onChange: this.handleCodeChange }), React.createElement('br', null), React.createElement('input', { type: 'text', name: 'description', placeholder: 'Description', onChange: this.handleDescChange }), React.createElement('br', null), React.createElement('input', { type: 'text', name: 'section', placeholder: 'Section', onChange: this.handleSectionChange }), React.createElement('br', null), React.createElement('button', null, 'Submit')));
   }
-
-  _inherits(AddPost, _React$Component);
-
-  _createClass(AddPost, [{
-    key: 'handleCodeChange',
-    value: function handleCodeChange(e) {
-      this.setState({ code: e.target.value });
-    }
-  }, {
-    key: 'handleDescChange',
-    value: function handleDescChange(e) {
-      this.setState({ description: e.target.value });
-    }
-  }, {
-    key: 'handleSectionChange',
-    value: function handleSectionChange(e) {
-      this.setState({ section: e.target.value });
-    }
-  }, {
-    key: '_handleSubmit',
-    value: function _handleSubmit() {
-      e.preventDefault();
-      console.log(this.state);
-      request.post(this.props.action).send({
-        code: this.state.code,
-        description: this.state.description,
-        section: this.state.section
-      }).end(function (err, res) {
-        console.log('Post request was sent.');
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return React.createElement('div', null, React.createElement('form', { action: this.props.action, method: this.props.method, onSubmit: this._handleSubmit }, React.createElement('input', { type: 'text', name: 'code', placeholder: 'Code', onChange: this.handleCodeChange }), React.createElement('br', null), React.createElement('input', { type: 'text', name: 'description', placeholder: 'Description', onChange: this.handleDescChange }), React.createElement('br', null), React.createElement('input', { type: 'text', name: 'section', placeholder: 'Section', onChange: this.handleSectionChange }), React.createElement('br', null), React.createElement('button', null, 'Submit')));
-    }
-  }]);
-
-  return AddPost;
-})(React.Component);
-
-AddPost.defaultProps = {
-  action: '/post/add',
-  method: 'POST'
-};
-
-module.exports = AddPost;
+});
 
 },{"react":219,"react-router":50,"superagent":220}],9:[function(require,module,exports){
 'use strict';

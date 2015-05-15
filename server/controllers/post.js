@@ -12,8 +12,7 @@ module.exports = function(router){
   router.route('/post/add')
     .post(function(req,res,next){
       console.log("post: /post/add");
-      console.log(res.body);
-      res.redirect("/post")
+      console.log(req.body);
       next();
     });
 
