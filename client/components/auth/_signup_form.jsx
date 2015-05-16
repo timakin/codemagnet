@@ -7,6 +7,11 @@ var React = require('react'),
     Navigation = Router.Navigation,
     request = require('superagent');
 
+function errorHandler(err, req, res, next) {
+    res.status(500);
+    res.render('error', { error: err });
+}
+
 module.exports = React.createClass({
   mixins: [Navigation],
 

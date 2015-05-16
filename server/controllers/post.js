@@ -1,6 +1,11 @@
 var Post = require('../models/post.model.js');
 var React = require('react');
 
+function errorHandler(err, req, res, next) {
+    res.status(500);
+    res.render('error', { error: err });
+}
+
 module.exports = function(router){
 
   router.route('/post')
@@ -13,7 +18,16 @@ module.exports = function(router){
     .post(function(req,res,next){
       console.log("post: /post/add");
       console.log(req.body);
-      next();
+      var post = new Post({
+        code: req.body.code,
+        description: req.body.description,
+        section: req.body.section
+      });
+      post.save(function(err, res) {
+        if (err) return errorHandler(err);
+        console.log("Saving post succeeded.");
+        next();
+      });
     });
 
   router.route('/post/:name')

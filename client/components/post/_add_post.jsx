@@ -1,30 +1,39 @@
 'use strict';
 var React = require('react');
-var Router = require('react-router');
+var Router = require('react-router'),
+    Navigation = Router.Navigation;
 var request = require('superagent');
 
 var Link = Router.Link,
     Route = Router.Route;
 
+
 module.exports = React.createClass({
+  mixins: [Navigation],
+
   getDefaultProps: function() {
     return {
       action: '/post/add',
       method: 'POST'
     }
   },
+  
   getInitialState: function() {
     return {code: '', description: '', section: ''}
   },
+  
   handleCodeChange: function(e) {
     this.setState({code: e.target.value});
   },
+  
   handleDescChange: function(e) {
     this.setState({description: e.target.value});
   },
+  
   handleSectionChange: function(e) {
     this.setState({section: e.target.value});
   },
+  
   _handleSubmit: function(e) {
     var self = this;
     e.preventDefault();
@@ -37,9 +46,10 @@ module.exports = React.createClass({
           section: this.state.section
         })
         .end(function(err, res){
-          console.log("Post request was sent.");
+          self.transitionTo('/post');
         });
   },
+  
   render: function() {
     return (
       <div>

@@ -37,6 +37,11 @@ var React = require('react'),
     Navigation = Router.Navigation,
     request = require('superagent');
 
+function errorHandler(err, req, res, next) {
+  res.status(500);
+  res.render('error', { error: err });
+}
+
 module.exports = React.createClass({ displayName: 'exports',
   mixins: [Navigation],
 
@@ -164,13 +169,15 @@ module.exports = React.createClass({ displayName: 'exports',
 },{"react":219,"react-router":50}],8:[function(require,module,exports){
 'use strict';
 var React = require('react');
-var Router = require('react-router');
+var Router = require('react-router'),
+    Navigation = Router.Navigation;
 var request = require('superagent');
 
 var Link = Router.Link,
     Route = Router.Route;
 
 module.exports = React.createClass({ displayName: 'exports',
+  mixins: [Navigation],
   getDefaultProps: function getDefaultProps() {
     return {
       action: '/post/add',
@@ -198,7 +205,7 @@ module.exports = React.createClass({ displayName: 'exports',
       description: this.state.description,
       section: this.state.section
     }).end(function (err, res) {
-      console.log('Post request was sent.');
+      self.transitionTo('/post');
     });
   },
   render: function render() {
