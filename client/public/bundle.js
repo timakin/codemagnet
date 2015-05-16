@@ -178,24 +178,30 @@ var Link = Router.Link,
 
 module.exports = React.createClass({ displayName: 'exports',
   mixins: [Navigation],
+
   getDefaultProps: function getDefaultProps() {
     return {
       action: '/post/add',
       method: 'POST'
     };
   },
+
   getInitialState: function getInitialState() {
     return { code: '', description: '', section: '' };
   },
+
   handleCodeChange: function handleCodeChange(e) {
     this.setState({ code: e.target.value });
   },
+
   handleDescChange: function handleDescChange(e) {
     this.setState({ description: e.target.value });
   },
+
   handleSectionChange: function handleSectionChange(e) {
     this.setState({ section: e.target.value });
   },
+
   _handleSubmit: function _handleSubmit(e) {
     var self = this;
     e.preventDefault();
@@ -206,10 +212,12 @@ module.exports = React.createClass({ displayName: 'exports',
       section: this.state.section
     }).end(function (err, res) {
       self.transitionTo('/post');
+      self.setState({ code: '', description: '', section: '' });
     });
   },
+
   render: function render() {
-    return React.createElement('div', null, React.createElement('form', { action: this.props.action, method: this.props.method, onSubmit: this._handleSubmit }, React.createElement('input', { type: 'text', name: 'code', placeholder: 'Code', onChange: this.handleCodeChange }), React.createElement('br', null), React.createElement('input', { type: 'text', name: 'description', placeholder: 'Description', onChange: this.handleDescChange }), React.createElement('br', null), React.createElement('input', { type: 'text', name: 'section', placeholder: 'Section', onChange: this.handleSectionChange }), React.createElement('br', null), React.createElement('button', null, 'Submit')));
+    return React.createElement('div', null, React.createElement('form', { action: this.props.action, method: this.props.method, onSubmit: this._handleSubmit }, React.createElement('input', { type: 'text', value: this.state.code, name: 'code', placeholder: 'Code', onChange: this.handleCodeChange }), React.createElement('br', null), React.createElement('input', { type: 'text', value: this.state.description, name: 'description', placeholder: 'Description', onChange: this.handleDescChange }), React.createElement('br', null), React.createElement('input', { type: 'text', value: this.state.section, name: 'section', placeholder: 'Section', onChange: this.handleSectionChange }), React.createElement('br', null), React.createElement('button', null, 'Submit')));
   }
 });
 
