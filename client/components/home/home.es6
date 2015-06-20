@@ -1,12 +1,9 @@
-var React = require('react');
-var Router = require('react-router');
+import React from 'react/addons';
+import {Link, Route} from 'react-router';
 
-var Link = Router.Link,
-    Route = Router.Route;
 
-module.exports  = React.createClass({
-    render: function(){
-
+const Home = React.createClass({
+    render() {
         return (
           <div id="home">
             <h1>this is home</h1>
@@ -19,6 +16,7 @@ module.exports  = React.createClass({
             <a href="/register">Register</a>
           </div>
         );
-
     }
 });
+
+export default Home;

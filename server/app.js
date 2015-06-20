@@ -25,7 +25,11 @@ app.use(logger('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
-app.use(session({secret: 'codemagnet secret'}));
+app.use(session({
+  secret: 'codemagnet_secret',
+  resave: false,
+  saveUninitialized: true,
+}));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());

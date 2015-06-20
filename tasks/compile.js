@@ -1,14 +1,16 @@
-var gulp = require('gulp');
-var concat = require('gulp-concat');
-var less = require('gulp-less');
+var gulp       = require('gulp');
+var concat     = require('gulp-concat');
+var less       = require('gulp-less');
+var minify     = require('gulp-minify-css');
+var plumber    = require('gulp-plumber');
+
+var babelify   = require('babelify');
+var sync       = require('browser-sync');
 var browserify = require('browserify');
-var reactify = require('reactify');
-var babelify = require('babelify');
-var sync = require('browser-sync');
-var plumber = require('gulp-plumber');
-var source = require('vinyl-source-stream');
-var minify = require('gulp-minify-css');
-var confPath = require('../config.json').paths;
+var reactify   = require('reactify');
+var source     = require('vinyl-source-stream');
+
+var confPath   = require('../config.json').paths;
 
 module.exports = {
 
@@ -16,9 +18,11 @@ module.exports = {
     console.log("start-task: jsx");
     browserify({
         entries: [confPath.resource.scripts],
-        debug: true
+        debug: true,
     })
-    .transform(babelify)
+    .transform(babelify.configure({
+      extensions: ['.es6', '.js', '.jsx']
+    }))
     .bundle()
     .pipe(plumber(function(res){
         sync.notify("jsx compile error");
