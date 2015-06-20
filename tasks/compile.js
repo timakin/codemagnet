@@ -16,8 +16,9 @@ module.exports = {
     console.log("start-task: jsx");
     browserify({
         entries: [confPath.resource.scripts],
-        transform: [reactify, babelify]
+        debug: true
     })
+    .transform(babelify)
     .bundle()
     .pipe(plumber(function(res){
         sync.notify("jsx compile error");

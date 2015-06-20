@@ -12,19 +12,19 @@ var PORT = '4000';//process.env.PORT;
 var BASE_URL = `http://${HOST}:${PORT}`;
 
 module.exports = React.createClass({
-  getInitialState() {
+  getInitialState: function() {
     return {
       posts: []
     }
   },
 
-  componentDidMount() {
+  componentDidMount: function() {
     request.get('/post/all').end((err, res) => {
       this.setState({posts: res.body});
     });
   },
 
-  render() {
+  render: function() {
     return (
       <div id="post">
         <h1>{this.props.params.datas}</h1>
