@@ -1,9 +1,7 @@
 {
   "build": {
-    "resource": {
-      "scripts": "./client/client.js",
-      "styles": "./client/components/**/*.less"
-    },
+    "JS_ENTRY_POINT": "./client/client.js",
+    "STYLESHEET_ENTRY_POINT": "./client/components/**/*.less",
     "DEST_DIR_PATH": "./public/",
     "EXTENSIONS": [".es6", ".js", ".jsx"]
   },
