@@ -33,7 +33,6 @@ const AddPostForm = React.createClass({
   _handleSubmit(e) {
     var self = this;
     e.preventDefault();
-    console.log(this.state);
     request
         .post(this.props.action)
         .send({

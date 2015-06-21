@@ -18,7 +18,6 @@ const Post = React.createClass({
 
   componentDidMount: function() {
     request.get('/post/all').end((err, res) => {
-      console.log("yoyo");
       this.setState({posts: res.body});
     });
   },

@@ -25,7 +25,6 @@ const signupForm = React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     var self = this;
-    console.log(this.state);
     request
         .post(this.props.action)
         .send({
@@ -33,9 +32,7 @@ const signupForm = React.createClass({
           password: this.state.password
         })
         .end(function(err, res){
-          console.log("Responded.");
           if (!err) {
-            console.log("No error.");
             self.transitionTo('/');
           }
         });

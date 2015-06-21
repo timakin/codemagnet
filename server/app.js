@@ -45,17 +45,10 @@ app.get('/bundle.js', function(req, res) {
   fs.createReadStream('./public/bundle.js').pipe(res);
 });
 
-var data = [
-  { id: 1, name: 'backbone' },
-  { id: 2, name: 'react' },
-  { id: 3, name: 'angular' },
-];
-
 app.use(function(req, res) {
   Router.run(routes, req.path, function(Handler) {
     res.send(template({
-      initialData: JSON.stringify(data),
-      markup: React.renderToString(React.createElement(Handler, {params: {datas: data}}))
+      markup: React.renderToString(React.createElement(Handler))
     }));
   });
 });
