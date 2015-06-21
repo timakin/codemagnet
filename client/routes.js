@@ -1,12 +1,12 @@
 import React from 'react';
 import {Route, DefaultRoute} from 'react-router';
 
-import App      from './components/app.jsx';
-import Post     from './components/post/post.jsx';
-import Register from './components/auth/register.jsx';
-import Home     from './components/home/home.js';
+import App      from './components/app';
+import Post     from './components/post/post';
+import Register from './components/auth/register';
+import Home     from './components/home/home';
 
-const Routes = () => {
+module.exports = function() {
   return (
     <Route name="app" path="/" handler={App}>
       <Route name="post" handler={Post} />
@@ -15,5 +15,3 @@ const Routes = () => {
     </Route>
   );
 };
-
-export default Routes;

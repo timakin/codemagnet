@@ -1,15 +1,13 @@
 'use strict';
-var React = require('react');
-var Router = require('react-router');
-var request= require('superagent');
-var AddPost = require('./_add_post.jsx');
 
-var Link = Router.Link,
-    Route = Router.Route;
+import React         from 'react';
+import {Link, Route} from 'react-router';
+import {request}     from 'superagent';
+import {AddPost}     from './_add_post';
 
-var HOST = 'localhost';//process.env.HOST;
-var PORT = '4000';//process.env.PORT;
-var BASE_URL = `http://${HOST}:${PORT}`;
+const HOST     = 'localhost';//process.env.HOST;
+const PORT     = '4000';//process.env.PORT;
+const BASE_URL = `http://${HOST}:${PORT}`;
 
 module.exports = React.createClass({
   getInitialState: function() {
