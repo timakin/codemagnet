@@ -14,7 +14,6 @@ var config     = require('../config.json').paths;
 module.exports = {
 
   jsx: function(){
-    console.log("start-task: jsx");
     browserify({
         entries: [config.resource.scripts],
         debug: true,
@@ -36,8 +35,7 @@ module.exports = {
   },
 
   less: function(){
-    console.log("start-task: less");
-    return gulp.src(config.resource.styles)
+    gulp.src(config.resource.styles)
       .pipe(plumber(function(res){
           sync.notify("jsx compile error");
       }))

@@ -1,6 +1,4 @@
-var gulp = require('gulp');
 var nodemon = require('gulp-nodemon');
-var confPath = require('../config.json').paths;
 
 module.exports = {
     serve: function(){
