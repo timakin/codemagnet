@@ -1,14 +1,10 @@
 'use strict';
-var React = require('react');
-var Router = require('react-router'),
-    Navigation = Router.Navigation;
-var request = require('superagent');
-
-var Link = Router.Link,
-    Route = Router.Route;
+import React from 'react';
+import {Navigation} from 'react-router';
+import request from 'superagent';
 
 
-module.exports = React.createClass({
+const AddPostForm = React.createClass({
   mixins: [Navigation],
 
   getDefaultProps: function() {
@@ -64,3 +60,5 @@ module.exports = React.createClass({
     )
   }
 });
+
+export default AddPostForm;
