@@ -9,7 +9,6 @@ module.exports = function(router, passport) {
     }));
 
   router.route('/register').get(function(req, res, next){
-    console.log("index: /register");
     next();
   });
 
