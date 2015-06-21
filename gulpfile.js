@@ -66,4 +66,5 @@ gulp.task('vmserve', function() {
   });
 });
 
-gulp.task('default', ['bundle:stylesheet', 'bundle:js', 'serve']);
+gulp.task('build', ['bundle:stylesheet', 'bundle:js'])
+gulp.task('default', ['build', 'serve']);
