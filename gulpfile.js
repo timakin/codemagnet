@@ -1,12 +1,45 @@
-var gulp = require('gulp');
-var path = require('path');
+var gulp       = require('gulp');
+var concat     = require('gulp-concat');
+var less       = require('gulp-less');
+var minify     = require('gulp-minify-css');
+var plumber    = require('gulp-plumber');
+var uglify     = require('gulp-uglify');
+
+var babelify   = require('babelify');
+var sync       = require('browser-sync');
+var browserify = require('browserify');
+var path       = require('path');
+var source     = require('vinyl-source-stream');
+
+var config     = require('./config.json').build;
 
 var tasks = {
-  compile: require('./tasks/compile.js'), server: require('./tasks/server.js')
+  server: require('./tasks/server.js')
 };
 
-gulp.task('jsx', tasks.compile.jsx);
-gulp.task('less', tasks.compile.less);
+gulp.task('build:js', function() {
+  browserify({
+      entries: [config.resource.scripts],
+      debug: true,
+      extensions: ['.es6', '.js', '.jsx']
+  })
+  .transform(babelify)
+  .bundle()
+  .pipe(plumber())
+  .pipe(source('bundle.js'))
+  .pipe(uglify())
+  .pipe(gulp.dest(config["DEST_DIR_PATH"]))
+});
+
+gulp.task('build:stylesheet', function() {
+  gulp.src(config.resource.styles)
+    .pipe(plumber())
+    .pipe(concat('style.less'))
+    .pipe(less())
+    .pipe(minify())
+    .pipe(gulp.dest(config["DEST_DIR_PATH"]))
+});
+
 gulp.task('serve', tasks.server.serve);
 gulp.task('vmserve', tasks.server.vmserve);
-gulp.task('default', ['less', 'jsx', 'serve']);
+gulp.task('default', ['build:stylesheet', 'build:js', 'serve']);

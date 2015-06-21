@@ -7,7 +7,7 @@ module.exports = {
             ext: 'js html jsx',
             ignore: ['bundle.js', 'style.css']
         })
-        .on('change', ['jsx', 'less'])
+        .on('change', ['js', 'less'])
         .on('restart', function(){
           console.log("restarted!");
         });
@@ -19,7 +19,7 @@ module.exports = {
             ignore: ['bundle.js', 'style.css'],
             env: { 'NODE_ENV': 'vmdev' }
         })
-        .on('change', ['jsx', 'less'])
+        .on('change', ['js', 'less'])
         .on('restart', function(){
           console.log("restarted!");
         });

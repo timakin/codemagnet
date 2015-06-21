@@ -1,10 +1,10 @@
 {
-  "paths": {
+  "build": {
     "resource": {
       "scripts": "./client/client.js",
-      "styles": "./**/*.less"
+      "styles": "./client/components/**/*.less"
     },
-    "DEST_PATH":  "./public/"
+    "DEST_DIR_PATH": "./public/"
   },
 
   "db": {
