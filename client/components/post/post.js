@@ -2,14 +2,14 @@
 
 import React         from 'react';
 import {Link, Route} from 'react-router';
-import {request}     from 'superagent';
-import {AddPost}     from './_add_post';
+import request     from 'superagent';
+import AddPost     from './_add_post';
 
 const HOST     = 'localhost';//process.env.HOST;
 const PORT     = '4000';//process.env.PORT;
 const BASE_URL = `http://${HOST}:${PORT}`;
 
-module.exports = React.createClass({
+const Post = React.createClass({
   getInitialState: function() {
     return {
       posts: []
@@ -18,6 +18,7 @@ module.exports = React.createClass({
 
   componentDidMount: function() {
     request.get('/post/all').end((err, res) => {
+      console.log("yoyo");
       this.setState({posts: res.body});
     });
   },
@@ -38,3 +39,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+export default Post;
