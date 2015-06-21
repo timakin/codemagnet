@@ -1,14 +1,12 @@
-var React = require('react'),
-    Router = require('react-router'),
-    Route = Router.Route,
-    DefaultRoute = Router.DefaultRoute,
-    App  = require('./components/app.jsx'),
-    Post = require('./components/post/post.jsx'),
-    Register = require('./components/auth/register.jsx'),
-    Home = require('./components/home/home.js')
-;
+import React from 'react';
+import {Route, DefaultRoute} from 'react-router';
 
-module.exports = function() {
+import App      from './components/app.jsx';
+import Post     from './components/post/post.jsx';
+import Register from './components/auth/register.jsx';
+import Home     from './components/home/home.js';
+
+const Routes = () => {
   return (
     <Route name="app" path="/" handler={App}>
       <Route name="post" handler={Post} />
@@ -17,3 +15,5 @@ module.exports = function() {
     </Route>
   );
 };
+
+export default Routes;
