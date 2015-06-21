@@ -36,7 +36,7 @@ app.use(passport.session());
 
 // ===== server api routing
 app.use(router);
-app.use('/', require('./controllers'));
+app.use('/', require('./api'));
 
 var template = Handlebars.compile(fs.readFileSync('./public/index.hbs').toString());
 var routes = require('../client/routes')();
