@@ -5,7 +5,7 @@ var React = require('react'),
     App  = require('./components/app.jsx'),
     Post = require('./components/post/post.jsx'),
     Register = require('./components/auth/register.jsx'),
-    Home = require('./components/home/home.jsx')
+    Home = require('./components/home/home.es6')
 ;
 
 module.exports = function() {
