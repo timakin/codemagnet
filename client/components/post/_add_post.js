@@ -1,36 +1,36 @@
 'use strict';
+
 import React from 'react';
 import {Navigation} from 'react-router';
 import request from 'superagent';
 
-
 const AddPostForm = React.createClass({
   mixins: [Navigation],
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       action: '/post/add',
       method: 'POST'
     }
   },
 
-  getInitialState: function() {
+  getInitialState() {
     return {code: '', description: '', section: ''}
   },
 
-  handleCodeChange: function(e) {
+  handleCodeChange(e) {
     this.setState({code: e.target.value});
   },
 
-  handleDescChange: function(e) {
+  handleDescChange(e) {
     this.setState({description: e.target.value});
   },
 
-  handleSectionChange: function(e) {
+  handleSectionChange(e) {
     this.setState({section: e.target.value});
   },
 
-  _handleSubmit: function(e) {
+  _handleSubmit(e) {
     var self = this;
     e.preventDefault();
     console.log(this.state);
@@ -47,7 +47,7 @@ const AddPostForm = React.createClass({
         });
   },
 
-  render: function() {
+  render() {
     return (
       <div>
         <form action={this.props.action} method={this.props.method} onSubmit={this._handleSubmit}>

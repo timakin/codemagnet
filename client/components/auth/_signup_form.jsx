@@ -1,36 +1,28 @@
 'use strict';
 
-var React = require('react'),
-    Router = require('react-router'),
-    Link = Router.Link,
-    Route = Router.Route,
-    Navigation = Router.Navigation,
-    request = require('superagent');
+import React from 'react';
+import {Navigation} from 'react-router';
+import request from 'superagent';
 
-function errorHandler(err, req, res, next) {
-    res.status(500);
-    res.render('error', { error: err });
-}
-
-module.exports = React.createClass({
+const signupForm = React.createClass({
   mixins: [Navigation],
 
-  getDefaultProps: function() {
+  getDefaultProps() {
     return {
       action: '/auth/signup/local',
       method: 'POST'
     }
   },
-  getInitialState: function() {
+  getInitialState() {
     return {username: '', password: ''}
   },
-  handleUsernameChange: function(e) {
+  handleUsernameChange(e) {
     this.setState({username: e.target.value});
   },
-  handlePasswordChange: function(e) {
+  handlePasswordChange(e) {
     this.setState({password: e.target.value});
   },
-  handleSubmit: function(e) {
+  handleSubmit(e) {
     e.preventDefault();
     var self = this;
     console.log(this.state);
@@ -49,7 +41,7 @@ module.exports = React.createClass({
         });
   },
 
-  render : function() {
+  render() {
     return (
         <form action={this.props.action} method={this.props.method} onSubmit={this.handleSubmit}>
           <input type="text" name="username" placeholder="Username" onChange={this.handleUsernameChange} />
@@ -59,3 +51,5 @@ module.exports = React.createClass({
     );
   }
 });
+
+export default signupForm;

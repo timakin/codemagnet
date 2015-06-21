@@ -5,7 +5,7 @@ import {Link, Route, RouteHandler} from 'react-router';
 import request from 'superagent';
 
 const Header = React.createClass({
-  render: function(){
+  render(){
     return (
       <div id="header">
         <h1>header</h1>
