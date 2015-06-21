@@ -9,15 +9,14 @@ var babelify   = require('babelify');
 var sync       = require('browser-sync');
 var browserify = require('browserify');
 var source     = require('vinyl-source-stream');
-
-var confPath   = require('../config.json').paths;
+var config     = require('../config.json').paths;
 
 module.exports = {
 
   jsx: function(){
     console.log("start-task: jsx");
     browserify({
-        entries: [confPath.resource.scripts],
+        entries: [config.resource.scripts],
         debug: true,
         extensions: ['.es6', '.js', '.jsx']
     })
@@ -28,7 +27,7 @@ module.exports = {
     }))
     .pipe(source('bundle.js'))
     .pipe(uglify())
-    .pipe(gulp.dest(confPath.publish))
+    .pipe(gulp.dest(config["DEST_PATH"]))
     .on('end',function(){
         sync.notify('ファイルを更新');
         sync.reload();
@@ -38,14 +37,14 @@ module.exports = {
 
   less: function(){
     console.log("start-task: less");
-    return gulp.src(confPath.resource.styles)
+    return gulp.src(config.resource.styles)
       .pipe(plumber(function(res){
           sync.notify("jsx compile error");
       }))
       .pipe(concat('style.less'))
       .pipe(less())
       .pipe(minify())
-      .pipe(gulp.dest(confPath.publish))
+      .pipe(gulp.dest(config["DEST_PATH"]))
       .on('end',function(){
           sync.notify('ファイルを更新');
           sync.reload();

@@ -1,24 +1,10 @@
 {
   "paths": {
-
-    "watch": {
-      "scripts": [],
-      "styles": []
-    },
-
     "resource": {
       "scripts": "./client/client.js",
       "styles": "./**/*.less"
     },
-
-    "publish":  "./public/",
-
-    "dest": {
-      "scripts": "",
-      "styles": "./public",
-      "react": "./public"
-    }
-
+    "DEST_PATH":  "./public/"
   },
 
   "db": {
