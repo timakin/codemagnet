@@ -45,7 +45,7 @@ gulp.task('serve', function() {
   nodemon({
       script: './server/app.js',
       ext: 'js html jsx',
-      ignore: ['bundle.js', 'style.css']
+      ignore: ['bundle.js', 'style.css', '.git/', 'node_modules/', 'bower_components/', './tmp'],
   })
   .on('change', ['js', 'less'])
   .on('restart', function(){
@@ -57,7 +57,7 @@ gulp.task('vmserve', function() {
   nodemon({
       script: './server/app.js',
       ext: 'js html jsx',
-      ignore: ['bundle.js', 'style.css'],
+      ignore: ['bundle.js', 'style.css', '.git/', 'node_modules/', 'bower_components/', './tmp'],
       env: { 'NODE_ENV': 'vmdev' }
   })
   .on('change', ['js', 'less'])
