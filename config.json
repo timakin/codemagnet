@@ -4,7 +4,8 @@
       "scripts": "./client/client.js",
       "styles": "./client/components/**/*.less"
     },
-    "DEST_DIR_PATH": "./public/"
+    "DEST_DIR_PATH": "./public/",
+    "EXTENSIONS": [".es6", ".js", ".jsx"]
   },
 
   "db": {

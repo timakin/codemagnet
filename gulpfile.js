@@ -3,6 +3,7 @@ var concat     = require('gulp-concat');
 var less       = require('gulp-less');
 var minify     = require('gulp-minify-css');
 var plumber    = require('gulp-plumber');
+var streamify  = require('gulp-streamify');
 var uglify     = require('gulp-uglify');
 
 var babelify   = require('babelify');
@@ -17,21 +18,21 @@ var tasks = {
   server: require('./tasks/server.js')
 };
 
-gulp.task('build:js', function() {
+gulp.task('bundle:js', function() {
   browserify({
       entries: [config.resource.scripts],
       debug: true,
-      extensions: ['.es6', '.js', '.jsx']
+      extensions: config["EXTENSIONS"],
   })
   .transform(babelify)
   .bundle()
   .pipe(plumber())
   .pipe(source('bundle.js'))
-  .pipe(uglify())
+  .pipe(streamify(uglify()))
   .pipe(gulp.dest(config["DEST_DIR_PATH"]))
 });
 
-gulp.task('build:stylesheet', function() {
+gulp.task('bundle:stylesheet', function() {
   gulp.src(config.resource.styles)
     .pipe(plumber())
     .pipe(concat('style.less'))
@@ -42,4 +43,4 @@ gulp.task('build:stylesheet', function() {
 
 gulp.task('serve', tasks.server.serve);
 gulp.task('vmserve', tasks.server.vmserve);
-gulp.task('default', ['build:stylesheet', 'build:js', 'serve']);
+gulp.task('default', ['bundle:stylesheet', 'bundle:js', 'serve']);
