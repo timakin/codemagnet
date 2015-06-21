@@ -1,7 +1,6 @@
 import React from 'react/addons';
 import {Link, Route} from 'react-router';
 
-
 const Home = React.createClass({
     render() {
         return (

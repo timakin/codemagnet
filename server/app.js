@@ -17,7 +17,7 @@ var session = require('express-session');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var flash    = require('connect-flash');
-require('node-jsx').install({ harmony: true });
+require('babel/register');
 
 // ===== passport setting
 require('./config/passport')(passport);
