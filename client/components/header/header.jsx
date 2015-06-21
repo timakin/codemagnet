@@ -1,14 +1,10 @@
 'use strict';
 
-var React = require('react');
-var Router = require('react-router');
-var superagent = require('superagent');
+import React from 'react';
+import {Link, Route, RouteHandler} from 'react-router';
+import request from 'superagent';
 
-var Route = Router.Route,
-    Link = Router.Link,
-    RouteHandler = Router.RouteHandler;
-
-module.exports  = React.createClass({
+const Header = React.createClass({
   render: function(){
     return (
       <div id="header">
@@ -19,3 +15,5 @@ module.exports  = React.createClass({
 
   }
 });
+
+export default Header;
