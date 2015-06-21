@@ -38,11 +38,11 @@ app.use(passport.session());
 app.use(router);
 app.use('/', require('./controllers'));
 
-var template = Handlebars.compile(fs.readFileSync('./client/public/index.hbs').toString());
+var template = Handlebars.compile(fs.readFileSync('./public/index.hbs').toString());
 var routes = require('../client/routes')();
 app.get('/bundle.js', function(req, res) {
   res.setHeader('content-type', 'application/javascript');
-  fs.createReadStream('./client/public/bundle.js').pipe(res);
+  fs.createReadStream('./public/bundle.js').pipe(res);
 });
 
 var data = [
@@ -62,8 +62,8 @@ app.use(function(req, res) {
 
 // ===== publish directory
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, '../client/public'));
-app.use(express.static(path.join(__dirname, '../client/public')));
+app.set('views', path.join(__dirname, '../public'));
+app.use(express.static(path.join(__dirname, '../public')));
 
 // ===== server listen port
 app.set('port', 4000);

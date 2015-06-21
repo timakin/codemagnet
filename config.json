@@ -8,15 +8,15 @@
 
     "resource": {
       "scripts": "./client/browser.js",
-      "styles": "./client/**/*.less"
+      "styles": "./**/*.less"
     },
 
-    "publish":  "./client/public/",
+    "publish":  "./public/",
 
     "dest": {
       "scripts": "",
-      "styles": "./client/public",
-      "react": "./client/public"
+      "styles": "./public",
+      "react": "./public"
     }
 
   },
