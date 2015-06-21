@@ -1,12 +1,12 @@
 'use strict';
-var React = require('react'),
-    Router = require('react-router'),
-    RouteHandler = Router.RouteHandler,
-    Header = require('./header/header.jsx'),
-    Footer = require('./footer/footer.jsx')
-;
 
-var App = React.createClass({
+import React from 'react';
+import {RouteHandler} from 'react-router';
+
+import Header from './header/header';
+import Footer from './footer/footer';
+
+const App = React.createClass({
   render() {
     return (
       <div>
@@ -19,4 +19,4 @@ var App = React.createClass({
   }
 });
 
-module.exports = App;
+export default App;
