@@ -6,7 +6,7 @@ import request from 'superagent';
 
 const styles = {
   color: 'red',
-  backgroundColor: 'gray'
+  backgroundColor: 'white'
 }
 
 const Header = React.createClass({
