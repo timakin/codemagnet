@@ -6,6 +6,7 @@
     "start": "node ./server/app.js"
   },
   "dependencies": {
+    "alt": "^0.16.10",
     "babel": "^5.6.1",
     "babelify": "^6.1.2",
     "bcrypt-nodejs": "0.0.3",
