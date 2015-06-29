@@ -3,6 +3,7 @@
 import React from 'react';
 import {Navigation} from 'react-router';
 import request from 'superagent';
+import CodeStore from '../../stores/CodeStore';
 
 const AddPostForm = React.createClass({
   mixins: [Navigation],
@@ -15,7 +16,7 @@ const AddPostForm = React.createClass({
   },
 
   getInitialState() {
-    return {code: '', description: '', section: ''}
+    return CodeStore.getState();
   },
 
   handleCodeChange(e) {
