@@ -3,24 +3,24 @@
 import React from 'react';
 import CodeStore from '../../stores/CodeStore.js';
 
-const Post = React.createClass({
-  getInitialState: function() {
+const Code = React.createClass({
+  getInitialState() {
     return CodeStore.getState();
   },
 
-  componentDidMount: function() {
+  componentDidMount() {
     CodeStore.listen(this.onChange);
   },
 
-  componentWillUnmount: function() {
+  componentWillUnmount() {
     CodeStore.unlisten(this.onChange);
   },
 
-  onChange: function(state) {
+  onChange(state) {
     this.setState(state);
   },
 
-  render: function() {
+  render() {
     return (
       <ul>
         {this.state.code.map((code) => {
