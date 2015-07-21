@@ -1,17 +1,60 @@
 import alt from '../alt';
-import CodeActions from '../actions/CodeActions';
+
+var CodeActions = require('../actions/CodeActions');
 
 class CodeStore {
   constructor() {
     this.code = [];
+    this.errorMessage = null;
 
     this.bindListeners({
-      handleUpdateCode: CodeActions.UPDATE_CODE
+      handleUpdateCode: CodeActions.UPDATE_CODE,
+      handleFetchCode: CodeActions.FETCH_CODE,
+      handleCodeFailed: CodeActions.CODE_FAILED,
+      setFavorites: CodeActions.FAVORITE_CODE
     });
   }
 
   handleUpdateCode(code) {
     this.code = code;
+    this.errorMessage = null;
+  }
+
+  handleFetchCode() {
+    this.code = [];
+  }
+
+  handleCodeFailed(errorMessage) {
+    this.errorMessage = errorMessage;
+  }
+
+  resetAllFavorites() {
+    this.code = this.code.map((code) => {
+      return {
+        id: code.id,
+        name: code.name,
+        has_favorite: false
+      };
+    });
+  }
+
+  setFavorites(code) {
+    this.waitFor(FavoriteCodeStore);
+
+    var favoritedCode = FavoriteCodeStore.getState().code;
+
+    this.resetAllFavorites();
+
+    favoritedCode.forEach((code) => {
+      // find each location in the array
+      for (var i = 0; i < this.code.length; i += 1) {
+        // set has_favorite to true
+        if (this.code[i].id === code.id) {
+          this.code[i].has_favorite = true;
+          break;
+        }
+      }
+    });
   }
 }
 

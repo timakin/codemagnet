@@ -1,15 +1,18 @@
 'use strict';
 
 import React from 'react';
-import CodeStore from '../../stores/CodeStore.js';
 
-const Code = React.createClass({
+var CodeStore = require('../../stores/CodeStore');
+var CodeActions = require('../../actions/CodeActions');
+
+var Code = React.createClass({
   getInitialState() {
     return CodeStore.getState();
   },
 
   componentDidMount() {
     CodeStore.listen(this.onChange);
+    CodeActions.fetchCode();
   },
 
   componentWillUnmount() {
@@ -21,6 +24,20 @@ const Code = React.createClass({
   },
 
   render() {
+    if (this.state.errorMessage) {
+      return (
+        <div>Something is wrong</div>
+      );
+    }
+
+    if (!this.state.code.length) {
+      return (
+        <div>
+          <img src="/ajax-loader.gif" />
+        </div>
+      )
+    }
+
     return (
       <ul>
         {this.state.code.map((code) => {
