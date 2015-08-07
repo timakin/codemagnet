@@ -14,7 +14,7 @@ var mockData = [
   { id: 12, name: 'San Francisco' }
 ];
 
-
+// mockData返すくん
 var CodeFetcher = {
   fetch: function () {
     // returning a Promise because that is what fetch does.

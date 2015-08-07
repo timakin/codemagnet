@@ -19,6 +19,15 @@ var Code = React.createClass({
     CodeStore.unlisten(this.onChange);
   },
 
+  addFav(e) {
+    console.log(e);
+    console.log(CodeStore.getCode());
+    var code = CodeStore.getCode(
+      Number(e.target.getAttribute('data-id'))
+    );
+    CodeActions.favoriteCode(code);
+  },
+
   onChange(state) {
     this.setState(state);
   },
@@ -40,9 +49,17 @@ var Code = React.createClass({
 
     return (
       <ul>
-        {this.state.code.map((code) => {
+        {this.state.code.map((code, i) => {
+          var favButton = (
+            <button onClick={this.addFav} data-id={code.id}>
+              Favorite
+            </button>
+          );
+
           return (
-            <li>{code.name}</li>
+            <li key={i}>
+              {code.name} {code.has_favorite ? '<3' : favButton}
+            </li>
           );
         })}
       </ul>

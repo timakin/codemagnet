@@ -7,6 +7,7 @@ class CodeStore {
     this.code = [];
     this.errorMessage = null;
 
+    // actionのuppercaseは自動変換
     this.bindListeners({
       handleUpdateCode: CodeActions.UPDATE_CODE,
       handleFetchCode: CodeActions.FETCH_CODE,
@@ -55,6 +56,16 @@ class CodeStore {
         }
       }
     });
+  }
+
+  getCode(id) {
+    var { code } = this.getState();
+    for (var i = 0; i < code.length; i += 1) {
+      if (code[i].id === id) {
+        return code[i];
+      }
+    }
+    return null;
   }
 }
 
